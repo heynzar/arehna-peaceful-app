@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import bg from "@/assets/bg.jpg";
 
 const poppins = Poppins({
   variable: "--poppins",
@@ -22,8 +23,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} antialiased h-screen w-screen overflow-hidden`}
+        className={`${poppins.className} antialiased h-screen w-screen overflow-hidden relative`}
       >
+        <div
+          style={{
+            backgroundImage: `url(${bg.src})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom",
+            filter: "brightness(50%)",
+          }}
+          className="absolute inset-0 -z-10"
+        ></div>
         {children}
       </body>
     </html>

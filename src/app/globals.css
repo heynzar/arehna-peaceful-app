@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .button-gradient {
+    @apply flex items-center justify-center gap-2 w-full p-3 rounded-xl shadow-md 
+      bg-gradient-to-b from-[rgba(255,255,255,0.2)] to-transparent bg-clip-padding 
+      border border-white/40 backdrop-blur-[2px] transition-all duration-300 transform;
+
+    &:active {
+      @apply scale-95;
+    }
+  }
+}
+
 :root {
   --background: #0a0a0a;
   --foreground: #fff;
