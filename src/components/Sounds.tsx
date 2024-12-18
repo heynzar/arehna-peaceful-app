@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { SetStateAction } from "react";
 import {
   Bird,
   CloudLightning,
@@ -14,12 +14,17 @@ import {
   Wind,
   X,
 } from "lucide-react";
-export default function Sounds() {
-  const [openSounds, setOpenSounds] = useState(true);
+export default function Sounds({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (value: SetStateAction<boolean>) => void;
+}) {
   return (
     <section
       className={`justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm ${
-        openSounds ? "flex" : "hidden"
+        open ? "flex" : "hidden"
       }`}
     >
       <div className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-zinc-800">
@@ -30,7 +35,7 @@ export default function Sounds() {
           </div>
           <button
             onClick={() => {
-              setOpenSounds(false);
+              setOpen(false);
             }}
             className="bg-zinc-900 p-1 rounded-lg "
           >

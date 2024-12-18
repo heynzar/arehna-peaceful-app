@@ -2,14 +2,19 @@
 
 import { Volume2, X } from "lucide-react";
 import { ruqaa } from "@/app/font";
-import { useState } from "react";
+import { SetStateAction } from "react";
 
-export default function Quran() {
-  const [openQuran, setOpenQuran] = useState(true);
+export default function Quran({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (value: SetStateAction<boolean>) => void;
+}) {
   return (
     <section
       className={`${ruqaa.className} ${
-        openQuran ? "flex" : "hidden"
+        open ? "flex" : "hidden"
       }  justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm`}
     >
       <div className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-white/15">
@@ -20,7 +25,7 @@ export default function Quran() {
           </div>
           <button
             onClick={() => {
-              setOpenQuran(false);
+              setOpen(false);
             }}
             className="bg-zinc-900 p-1 rounded-lg "
           >
