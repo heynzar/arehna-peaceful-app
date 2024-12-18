@@ -1,13 +1,8 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { poppins } from "@/app/font";
+
 import "./globals.css";
 import bg from "@/assets/bg.jpg";
-
-const poppins = Poppins({
-  variable: "--poppins",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
 
 export const metadata: Metadata = {
   title: "Arehna Peaceful App",
