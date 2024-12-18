@@ -1,4 +1,6 @@
-import { AudioLines, Settings } from "lucide-react";
+import Quran from "@/components/Quran";
+import Settings from "@/components/Settings";
+import { AudioLines, Settings as SettingsIcon } from "lucide-react";
 
 export default function Page() {
   return (
@@ -29,9 +31,11 @@ export default function Page() {
           className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-min"
           aria-label="Play Quran sounds"
         >
-          <Settings />
+          <SettingsIcon />
         </button>
       </section>
+
+      <Quran />
     </main>
   );
 }
