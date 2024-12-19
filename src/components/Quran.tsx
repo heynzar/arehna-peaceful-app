@@ -2,7 +2,8 @@
 
 import { Volume2, X } from "lucide-react";
 import { ruqaa } from "@/app/font";
-import { SetStateAction } from "react";
+import { SetStateAction, useState, useRef } from "react";
+import { quran } from "@/lib/data";
 
 export default function Quran({
   open,
@@ -11,6 +12,31 @@ export default function Quran({
   open: boolean;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
+  const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
+  const [playing, setPlaying] = useState<{ [key: string]: boolean }>({});
+
+  const toggleAudio = (src: string) => {
+    // Initialize audio if it doesn't exist
+    if (!audioRefs.current[src]) {
+      const audio = new Audio(src);
+      audio.loop = true; // Set audio to loop
+      audioRefs.current[src] = audio;
+    }
+
+    const audio = audioRefs.current[src]!;
+
+    if (playing[src]) {
+      // If the audio is currently playing, pause it
+      audio.pause();
+      setPlaying((prev) => ({ ...prev, [src]: false }));
+    } else {
+      // Otherwise, play the audio
+      audio.play().catch((error) => {
+        console.error("Audio playback failed:", error);
+      });
+      setPlaying((prev) => ({ ...prev, [src]: true }));
+    }
+  };
   return (
     <section
       className={`${ruqaa.className} ${
@@ -33,33 +59,22 @@ export default function Quran({
           </button>
         </div>
         <div
-          id="sounds"
+          id="quran"
           className="flex flex-wrap gap-2 justify-center items-center mt-4"
         >
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
-          <div className="h-10 w-[49%] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900 border border-zinc-800">
-            <span className="text-center">إن المتقين في مقام أمين</span>
-          </div>
+          {quran.map(({ name, src }) => (
+            <button
+              onClick={() => toggleAudio(src)}
+              key={name}
+              className={`h-10 w-[49%] cursor-pointer transition-colors border border-zinc-800 duration-300 flex items-center justify-center rounded-lg ${
+                playing[src]
+                  ? "bg-sky-500 hover:bg-sky-400"
+                  : "bg-zinc-900 hover:bg-zinc-800"
+              }`}
+            >
+              <span className="text-center">{name}</span>
+            </button>
+          ))}
         </div>
       </div>
     </section>

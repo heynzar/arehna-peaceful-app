@@ -35,7 +35,7 @@ export default function Settings({
         <div className="flex flex-col">
           <div className="mt-4">
             <span className="">App Settings</span>
-            <div className="mt-2 flex justify-between items-center px-2 pb-2 border-l border-white">
+            <div className="mt-2 flex justify-between items-center pb-2">
               <span className="text-sm opacity-80">Toggole Hijri Date</span>
               <div
                 onClick={() => setHijriDate(!hijriDate)}
@@ -52,7 +52,7 @@ export default function Settings({
             </div>
           </div>
 
-          <div className="mb-4 flex justify-between items-center px-2 border-l border-white">
+          <div className="mb-4 flex justify-between items-center">
             <span className="text-sm opacity-80">
               Toggle Quran Playing Method
             </span>

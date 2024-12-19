@@ -54,3 +54,39 @@
         </button>
       </section> */
 }
+
+{
+  /* <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <Bird size={40} strokeWidth={1} />
+          </div>
+          <div
+            // onClick={playAudio}
+            className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-sky-400"
+          >
+            <CloudRain size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <CloudLightning size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <MoonStar size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <Flame size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <Coffee size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <Droplets size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <Wind size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <Waves size={40} strokeWidth={1} />
+          </div>
+          <div className="size-[86px] cursor-pointer hover:bg-zinc-800 transition-colors duration-300 flex items-center justify-center rounded-lg bg-zinc-900">
+            <Wheat size={40} strokeWidth={1} />
+          </div> */
+}
