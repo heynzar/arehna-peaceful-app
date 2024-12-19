@@ -1,6 +1,6 @@
 "use client";
 import { SetStateAction, useState, useRef } from "react";
-import { Volume2, X } from "lucide-react";
+import { Volume2, VolumeOff, X } from "lucide-react";
 
 import { sounds } from "@/lib/data";
 export default function Sounds({
@@ -12,6 +12,8 @@ export default function Sounds({
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
   const [playing, setPlaying] = useState<{ [key: string]: boolean }>({});
+  const [volume, setVolume] = useState<number>(1); // Global volume (1 is max, 0 is muted)
+  const [muted, setMuted] = useState<boolean>(false);
 
   const toggleAudio = (src: string) => {
     // Initialize audio if it doesn't exist
@@ -35,6 +37,25 @@ export default function Sounds({
       setPlaying((prev) => ({ ...prev, [src]: true }));
     }
   };
+
+  const toggleMute = () => {
+    const newMuted = !muted;
+    setMuted(newMuted);
+    Object.values(audioRefs.current).forEach((audio) => {
+      if (audio) {
+        audio.volume = newMuted ? 0 : volume;
+      }
+    });
+  };
+
+  const changeVolume = (newVolume: number) => {
+    setVolume(newVolume);
+    Object.values(audioRefs.current).forEach((audio) => {
+      if (audio) {
+        audio.volume = muted ? 0 : newVolume;
+      }
+    });
+  };
   return (
     <section
       className={`justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm ${
@@ -44,10 +65,24 @@ export default function Sounds({
       <div className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-zinc-800">
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-4 w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
-            <button>
-              <Volume2 className="hover:text-white/80" />
-            </button>
-            <input type="range" className="w-full" />
+            {muted ? (
+              <button onClick={toggleMute}>
+                <VolumeOff className="hover:text-white/80" />
+              </button>
+            ) : (
+              <button onClick={toggleMute}>
+                <Volume2 className="hover:text-white/80" />
+              </button>
+            )}
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={muted ? 0 : volume}
+              onChange={(e) => changeVolume(parseFloat(e.target.value))}
+              className="w-full"
+            />
           </div>
           <button
             onClick={() => {

@@ -52,16 +52,12 @@ export const quran = [
     src: "https://server6.mp3quran.net/qtm/055.mp3",
   },
   {
-    name: "سورة الواقعة",
+    name: "سورة  الواقعة",
     src: "https://server6.mp3quran.net/qtm/056.mp3",
   },
   {
-    name: "سورة يس",
+    name: "سورة  يس",
     src: "https://server6.mp3quran.net/qtm/036.mp3",
-  },
-  {
-    name: "سورة طه",
-    src: "https://server6.mp3quran.net/qtm/020.mp3",
   },
 ];
 
