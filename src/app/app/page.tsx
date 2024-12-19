@@ -1,7 +1,9 @@
 "use client";
+import AudioLine from "@/components/AudioLines";
 import Quran from "@/components/Quran";
 import Settings from "@/components/Settings";
 import Sounds from "@/components/Sounds";
+import Time from "@/components/Time";
 import { AudioLines, Settings as SettingsIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -13,8 +15,7 @@ export default function Page() {
   return (
     <main className="w-full h-full select-none flex flex-col gap-4 scale-125 justify-center items-center p-4">
       <section className="py-4 w-full max-w-[400px] rounded-3xl  backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
-        <h1 className="text-[2.5rem] font-normal leading-10">THU 14 NOV</h1>
-        <h2 className="text-8xl font-medium">12:33</h2>
+        <Time />
       </section>
 
       <section className="flex items-center w-full max-w-[400px] gap-2">
