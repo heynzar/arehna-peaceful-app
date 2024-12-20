@@ -7,8 +7,8 @@ interface DateTimeDisplayProps {
 }
 
 const Time: React.FC<DateTimeDisplayProps> = ({ isHijri }) => {
-  const [currentDate, setCurrentDate] = useState<string>("");
-  const [currentTime, setCurrentTime] = useState<string>("");
+  const [currentDate, setCurrentDate] = useState<string>("Monday, December 20");
+  const [currentTime, setCurrentTime] = useState<string>("10:09");
 
   useEffect(() => {
     const updateDateTime = () => {

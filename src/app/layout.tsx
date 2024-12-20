@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { poppins } from "@/app/font";
+import bg from "@/assets/bg.jpg";
 
 import "./globals.css";
 export const metadata: Metadata = {
@@ -18,6 +19,16 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased h-screen w-screen overflow-hidden relative`}
       >
+        <div
+          style={{
+            backgroundImage: `url(${bg.src})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom",
+            filter: "brightness(50%)",
+          }}
+          className="absolute inset-0 -z-10"
+        ></div>
         {children}
       </body>
     </html>

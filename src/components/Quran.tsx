@@ -2,13 +2,15 @@
 
 import { RotateCcw, Volume2, VolumeOff, X } from "lucide-react";
 import { ruqaa } from "@/app/font";
-import { SetStateAction, useState, useRef } from "react";
+import { SetStateAction, useState, useRef, useEffect } from "react";
 import { quran } from "@/lib/data";
 
 export default function Quran({
   open,
   setOpen,
+  play,
 }: {
+  play: boolean;
   open: boolean;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
@@ -72,6 +74,12 @@ export default function Quran({
       }
     });
   };
+
+  useEffect(() => {
+    if (play) {
+      toggleAudio(quran[0].src);
+    }
+  }, [play]);
 
   const changeVolume = (newVolume: number) => {
     setVolume(newVolume);

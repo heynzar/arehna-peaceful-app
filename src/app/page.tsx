@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import bg from "@/assets/bg.jpg";
 import { AudioLines, Settings as SettingsIcon } from "lucide-react";
@@ -11,7 +11,7 @@ import Sounds from "@/components/Sounds";
 import Time from "@/components/Time";
 
 export default function Page() {
-  const [openApp, setOpenApp] = useState(true);
+  const [openApp, setOpenApp] = useState(false);
   const [openSounds, setOpenSounds] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const [openQuran, setOpenQuran] = useState(false);
@@ -20,6 +20,21 @@ export default function Page() {
     isReapting: false,
     bg: `${bg.src}`,
   });
+
+  const handleKeyPress = (e: KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setOpenApp(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   console.log(settings.bg);
   return (
@@ -37,12 +52,12 @@ export default function Page() {
 
       <main
         className={`${
-          openApp ? "flex" : "hidden"
+          openApp ? "hidden" : "flex"
         }  flex h-full select-none  flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
       >
         <Time isHijri={settings.isHijri} />
         <div className="mt-5">
-          <button onClick={() => setOpenApp(false)} className="key__button">
+          <button onClick={() => setOpenApp(true)} className="key__button">
             START
           </button>
         </div>
@@ -50,14 +65,15 @@ export default function Page() {
 
       <main
         className={`${
-          openApp ? "hidden" : "flex"
-        } w-full h-full select-none  flex-col gap-4 scale-125 justify-center items-center p-4`}
+          openApp ? "flex" : "hidden"
+        } w-full h-full  select-none  flex-col gap-4 justify-center items-center p-4`}
       >
-        <section className="py-4 w-full max-w-[400px] rounded-3xl  backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
+        <div className="mb-auto"></div>
+        <section className="scale-125 py-4 w-full max-w-[400px] rounded-3xl  backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
           <Time isHijri={settings.isHijri} />
         </section>
 
-        <section className="flex items-center w-full max-w-[400px] gap-2">
+        <section className="scale-125 mt-8 flex items-center w-full max-w-[400px] gap-2">
           <button
             onClick={() => setOpenQuran(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
@@ -85,14 +101,18 @@ export default function Page() {
           </button>
         </section>
 
-        <Quran open={openQuran} setOpen={setOpenQuran} />
+        <div className="ml-auto mt-auto text-lg backdrop-blur-sm rounded-lg px-4 border-[1px] border-white/20">
+          123:22:02
+        </div>
+
+        <Quran open={openQuran} setOpen={setOpenQuran} play={openApp} />
         <Settings
           open={openSettings}
           setOpen={setOpenSettings}
           settings={settings}
           setSettings={setSettings}
         />
-        <Sounds open={openSounds} setOpen={setOpenSounds} />
+        <Sounds open={openSounds} setOpen={setOpenSounds} play={openApp} />
       </main>
     </>
   );

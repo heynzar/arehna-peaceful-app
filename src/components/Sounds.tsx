@@ -1,13 +1,15 @@
 "use client";
-import { SetStateAction, useState, useRef } from "react";
+import { SetStateAction, useState, useRef, useEffect } from "react";
 import { Volume2, VolumeOff, X } from "lucide-react";
-
 import { sounds } from "@/lib/data";
+
 export default function Sounds({
   open,
   setOpen,
+  play,
 }: {
   open: boolean;
+  play: boolean;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
@@ -16,7 +18,6 @@ export default function Sounds({
   const [muted, setMuted] = useState<boolean>(false);
 
   const toggleAudio = (src: string) => {
-    // Initialize audio if it doesn't exist
     if (!audioRefs.current[src]) {
       const audio = new Audio(src);
       audio.loop = true; // Set audio to loop
@@ -26,11 +27,9 @@ export default function Sounds({
     const audio = audioRefs.current[src]!;
 
     if (playing[src]) {
-      // If the audio is currently playing, pause it
       audio.pause();
       setPlaying((prev) => ({ ...prev, [src]: false }));
     } else {
-      // Otherwise, play the audio
       audio.play().catch((error) => {
         console.error("Audio playback failed:", error);
       });
@@ -56,6 +55,15 @@ export default function Sounds({
       }
     });
   };
+
+  // Play default sounds when `play` is true
+  useEffect(() => {
+    if (play) {
+      toggleAudio(sounds[1].src); // Sound 1
+      toggleAudio(sounds[4].src); // Sound 4
+    }
+  }, [play]);
+
   return (
     <section
       className={`justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm ${
