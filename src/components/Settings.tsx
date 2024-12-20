@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import bg1 from "@/assets/bg.jpg";
-import bg2 from "@/assets/bg2.jpg";
+import bg3 from "@/assets/bg3.gif";
 import { Dispatch, SetStateAction } from "react";
 import { X } from "lucide-react";
 
@@ -103,7 +103,7 @@ export default function Settings({
           id="backgounds"
           className="pl-1 flex flex-wrap gap-2 justify-start items-center mt-2"
         >
-          {[bg1, bg2].map((bg, index) => (
+          {[bg1, bg3].map((bg, index) => (
             <div
               key={index}
               onClick={() => handleBackgroundSelect(bg.src)}
