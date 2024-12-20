@@ -38,7 +38,7 @@ export default function Quran({
     if (!audioRefs.current[src]) {
       const audio = new Audio(src);
       audio.loop = true;
-      audio.volume = muted ? 0 : volume; // Set initial volume
+      audio.volume = muted ? 0 : volume;
       audioRefs.current[src] = audio;
     }
 

@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { poppins } from "@/app/font";
 
 import "./globals.css";
-import bg from "@/assets/bg.jpg";
-
 export const metadata: Metadata = {
   title: "Arehna Peaceful App",
   description:
@@ -20,16 +18,6 @@ export default function RootLayout({
       <body
         className={`${poppins.className} antialiased h-screen w-screen overflow-hidden relative`}
       >
-        <div
-          style={{
-            backgroundImage: `url(${bg.src})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            backgroundPosition: "bottom",
-            filter: "brightness(50%)",
-          }}
-          className="absolute inset-0 -z-10"
-        ></div>
         {children}
       </body>
     </html>
