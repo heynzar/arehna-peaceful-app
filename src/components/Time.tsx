@@ -2,19 +2,40 @@
 
 import React, { useState, useEffect } from "react";
 
-const DateTimeDisplay: React.FC = () => {
-  const [currentDate, setCurrentDate] = useState<string>("THU, DEC 18");
-  const [currentTime, setCurrentTime] = useState<string>("12:22");
+interface DateTimeDisplayProps {
+  isHijri: boolean;
+}
+
+const Time: React.FC<DateTimeDisplayProps> = ({ isHijri }) => {
+  const [currentDate, setCurrentDate] = useState<string>("");
+  const [currentTime, setCurrentTime] = useState<string>("");
 
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        weekday: "short",
-        day: "2-digit",
-        month: "short",
+
+      const getGregorianDate = () => {
+        return now.toLocaleDateString("en-US", {
+          weekday: "long",
+          day: "2-digit",
+          month: "long",
+        });
       };
-      setCurrentDate(now.toLocaleDateString("en-US", options));
+
+      const getHijriDate = () => {
+        try {
+          return new Intl.DateTimeFormat("en-TN-u-ca-islamic", {
+            month: "long",
+            weekday: "long",
+            day: "2-digit",
+          }).format(now);
+        } catch {
+          return "Hijri calendar not supported";
+        }
+      };
+
+      setCurrentDate(isHijri ? getHijriDate() : getGregorianDate());
+
       setCurrentTime(
         now.toLocaleTimeString("en-US", {
           hour12: false,
@@ -24,21 +45,20 @@ const DateTimeDisplay: React.FC = () => {
       );
     };
 
-    // Update date and time every second
     const timer = setInterval(updateDateTime, 1000);
-    updateDateTime(); // Call immediately to set initial value
+    updateDateTime();
 
-    return () => clearInterval(timer); // Cleanup interval on component unmount
-  }, []);
+    return () => clearInterval(timer);
+  }, [isHijri]);
 
   return (
     <div>
-      <h1 className="text-[2.5rem] font-normal leading-10">
-        {currentDate.toUpperCase()}
+      <h1 className="text-xl font-normal leading-10 text-center">
+        {currentDate}
       </h1>
-      <h2 className="text-8xl font-medium">{currentTime}</h2>
+      <h2 className="text-8xl font-medium text-center">{currentTime}</h2>
     </div>
   );
 };
 
-export default DateTimeDisplay;
+export default Time;
