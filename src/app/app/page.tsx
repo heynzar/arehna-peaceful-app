@@ -1,5 +1,5 @@
 "use client";
-import AudioLine from "@/components/AudioLines";
+
 import Quran from "@/components/Quran";
 import Settings from "@/components/Settings";
 import Sounds from "@/components/Sounds";

@@ -2,15 +2,16 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
+// Static path variants outside the component
+const pathVariants = [
+  ["M2 8v7", "M6 3v18", "M10 10v2", "M14 5v13", "M18 10v3", "M22 6v11"],
+  ["M2 10v2", "M6 6v11", "M10 3v18", "M14 8v7", "M18 5v13", "M22 10v3"],
+  ["M2 5v15", "M6 8v7", "M10 4v16", "M14 10v5", "M18 6v13", "M22 8v7"],
+];
+
 export default function AudioLine() {
   const [check, setCheck] = useState(false);
   const [activePaths, setActivePaths] = useState(0);
-
-  const pathVariants = [
-    ["M2 8v7", "M6 3v18", "M10 10v2", "M14 5v13", "M18 10v3", "M22 6v11"],
-    ["M2 10v2", "M6 6v11", "M10 3v18", "M14 8v7", "M18 5v13", "M22 10v3"],
-    ["M2 5v15", "M6 8v7", "M10 4v16", "M14 10v5", "M18 6v13", "M22 8v7"],
-  ];
 
   useEffect(() => {
     let interval: NodeJS.Timeout | undefined;

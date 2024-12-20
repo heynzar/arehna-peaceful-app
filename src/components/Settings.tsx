@@ -92,8 +92,12 @@ export default function Settings({
             Save
           </button>
           <p className="text-[0.7rem]">
-            Develop by{" "}
-            <a href="" className="underline">
+            Developed by{" "}
+            <a
+              href="https://nzar.dev"
+              target="_blank"
+              className="underline underline-offset-2"
+            >
               Nzar
             </a>
           </p>
