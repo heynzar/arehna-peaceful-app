@@ -9,6 +9,7 @@ import Quran from "@/components/Quran";
 import Settings from "@/components/Settings";
 import Sounds from "@/components/Sounds";
 import Time from "@/components/Time";
+import Timer from "@/components/Timer";
 
 export default function Page() {
   const [openApp, setOpenApp] = useState(false);
@@ -101,9 +102,7 @@ export default function Page() {
           </button>
         </section>
 
-        <div className="ml-auto mt-auto text-lg backdrop-blur-sm rounded-lg px-4 border-[1px] border-white/20">
-          123:22:02
-        </div>
+        <Timer play={openApp} />
 
         <Quran open={openQuran} setOpen={setOpenQuran} play={openApp} />
         <Settings

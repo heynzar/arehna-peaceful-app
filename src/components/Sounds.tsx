@@ -70,7 +70,7 @@ export default function Sounds({
         open ? "flex" : "hidden"
       }`}
     >
-      <div className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-zinc-800">
+      <div className="p-4 w-full max-w-[496px] scale-125 rounded-2xl bg-zinc-950 border border-zinc-800">
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-4 w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
             {muted ? (

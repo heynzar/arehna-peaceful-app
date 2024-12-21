@@ -41,11 +41,11 @@ export default function Settings({
 
   return (
     <section
-      className={`justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm ${
+      className={`justify-center items-center scale-150 absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm ${
         open ? "flex" : "hidden"
       }`}
     >
-      <div className="relative p-4 w-full max-w-max scale-110 rounded-2xl bg-zinc-950 border border-white/15">
+      <div className="relative p-4 w-full max-w-max rounded-2xl bg-zinc-950 border border-white/15">
         <button
           onClick={() => setOpen(false)}
           className="bg-zinc-900 p-1 rounded-lg ml-auto absolute right-4 top-4"

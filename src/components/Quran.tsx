@@ -94,7 +94,7 @@ export default function Quran({
     <section
       className={`${ruqaa.className} ${
         open ? "flex" : "hidden"
-      } justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm`}
+      } justify-center items-center scale-125 absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm`}
     >
       <div className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-white/15">
         <div className="flex justify-between w-full">
