@@ -1,6 +1,7 @@
 "use client";
-import { SetStateAction, useState, useRef, useEffect } from "react";
+
 import { Volume2, VolumeOff, X } from "lucide-react";
+import { SetStateAction, useState, useRef, useEffect } from "react";
 import { sounds } from "@/lib/data";
 
 export default function Sounds({
@@ -15,27 +16,53 @@ export default function Sounds({
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
-  const [playing, setPlaying] = useState<{ [key: string]: boolean }>({});
+  const [playingSounds, setPlayingSounds] = useState<Set<string>>(new Set());
+  const [audioPositions, setAudioPositions] = useState<{
+    [key: string]: number;
+  }>({});
   const [volume, setVolume] = useState<number>(1); // Global volume (1 is max, 0 is muted)
-  const [muted, setMuted] = useState<boolean>(false);
+  const [muted, setMuted] = useState<boolean>(false); // Track if audio is muted
+  const [initialized, setInitialized] = useState<boolean>(false); // Tracks if the first audio has already been played
 
-  const toggleAudio = (src: string) => {
+  const playAudio = (src: string) => {
     if (!audioRefs.current[src]) {
       const audio = new Audio(src);
-      audio.loop = true; // Set audio to loop
+      audio.loop = true;
+      audio.volume = muted ? 0 : volume;
       audioRefs.current[src] = audio;
     }
 
     const audio = audioRefs.current[src]!;
+    audio.currentTime = audioPositions[src] || 0;
 
-    if (playing[src]) {
+    audio.play().catch((error) => {
+      console.error("Audio playback failed:", error);
+    });
+
+    setPlayingSounds((prev) => new Set(prev).add(src));
+  };
+
+  const pauseAudio = (src: string) => {
+    if (audioRefs.current[src]) {
+      const audio = audioRefs.current[src]!;
+      setAudioPositions((prev) => ({
+        ...prev,
+        [src]: audio.currentTime,
+      }));
       audio.pause();
-      setPlaying((prev) => ({ ...prev, [src]: false }));
-    } else {
-      audio.play().catch((error) => {
-        console.error("Audio playback failed:", error);
+    }
+  };
+
+  const toggleAudio = (src: string) => {
+    if (playingSounds.has(src)) {
+      pauseAudio(src);
+      setPlayingSounds((prev) => {
+        const newPlaying = new Set(prev);
+        newPlaying.delete(src);
+        return newPlaying;
       });
-      setPlaying((prev) => ({ ...prev, [src]: true }));
+    } else {
+      playAudio(src);
     }
   };
 
@@ -58,12 +85,30 @@ export default function Sounds({
     });
   };
 
+  // Play the first audio when the app starts (only once)
   useEffect(() => {
-    if (openApp) {
-      toggleAudio(sounds[1].src);
-      toggleAudio(sounds[4].src);
+    if (openApp && !initialized) {
+      playAudio(sounds[1].src);
+      playAudio(sounds[4].src);
+      setInitialized(true);
     }
-  }, [play]);
+  }, [openApp]);
+
+  // Control audio playback when the play state toggles
+  useEffect(() => {
+    if (play) {
+      // Resume audio playback for all currently playing sounds
+      playingSounds.forEach((src) => {
+        const audio = audioRefs.current[src];
+        audio
+          ?.play()
+          .catch((error) => console.error("Audio playback failed:", error));
+      });
+    } else {
+      // Pause all audio
+      playingSounds.forEach((src) => pauseAudio(src));
+    }
+  }, [play, playingSounds]);
 
   return (
     <section
@@ -94,10 +139,8 @@ export default function Sounds({
             />
           </div>
           <button
-            onClick={() => {
-              setOpen(false);
-            }}
-            className="bg-zinc-900 p-1 rounded-lg "
+            onClick={() => setOpen(false)}
+            className="bg-zinc-900 p-1 rounded-lg"
           >
             <X className="hover:text-white/80" />
           </button>
@@ -111,7 +154,7 @@ export default function Sounds({
               onClick={() => toggleAudio(src)}
               key={src}
               className={`size-[86px] cursor-pointer  transition-colors duration-300 flex items-center justify-center rounded-lg ${
-                playing[src]
+                playingSounds.has(src)
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"
               }`}

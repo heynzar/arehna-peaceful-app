@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import bg from "@/assets/bg.jpg";
-import { AudioLines, Settings as SettingsIcon } from "lucide-react";
+import { Settings as SettingsIcon } from "lucide-react";
 
 import Quran from "@/components/Quran";
 import Settings from "@/components/Settings";

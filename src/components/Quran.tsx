@@ -23,22 +23,9 @@ export default function Quran({
   }>({});
   const [volume, setVolume] = useState<number>(1); // Global volume (1 is max, 0 is muted)
   const [muted, setMuted] = useState<boolean>(false); // Track if audio is muted
+  const [initialized, setInitialized] = useState<boolean>(false); // Tracks if the first audio has already been played
 
-  const toggleAudio = (src: string) => {
-    if (currentPlaying && audioRefs.current[currentPlaying]) {
-      const currentAudio = audioRefs.current[currentPlaying]!;
-      setAudioPositions((prev) => ({
-        ...prev,
-        [currentPlaying]: currentAudio.currentTime,
-      }));
-      currentAudio.pause();
-    }
-
-    if (currentPlaying === src) {
-      setCurrentPlaying(null);
-      return;
-    }
-
+  const playAudio = (src: string) => {
     if (!audioRefs.current[src]) {
       const audio = new Audio(src);
       audio.loop = true;
@@ -54,6 +41,27 @@ export default function Quran({
     });
 
     setCurrentPlaying(src);
+  };
+
+  const pauseAudio = () => {
+    if (currentPlaying && audioRefs.current[currentPlaying]) {
+      const audio = audioRefs.current[currentPlaying]!;
+      setAudioPositions((prev) => ({
+        ...prev,
+        [currentPlaying]: audio.currentTime,
+      }));
+      audio.pause();
+    }
+  };
+
+  const toggleAudio = (src: string) => {
+    if (currentPlaying && currentPlaying === src) {
+      pauseAudio();
+      setCurrentPlaying(null);
+    } else {
+      pauseAudio();
+      playAudio(src);
+    }
   };
 
   const restartAudio = (src: string) => {
@@ -77,12 +85,6 @@ export default function Quran({
     });
   };
 
-  useEffect(() => {
-    if (openApp) {
-      toggleAudio(quran[0].src);
-    }
-  }, [play]);
-
   const changeVolume = (newVolume: number) => {
     setVolume(newVolume);
     Object.values(audioRefs.current).forEach((audio) => {
@@ -91,6 +93,33 @@ export default function Quran({
       }
     });
   };
+
+  // Play the first audio when the app starts (only once)
+  useEffect(() => {
+    if (openApp && !initialized) {
+      playAudio(quran[0].src);
+      setInitialized(true);
+    }
+  }, [openApp]);
+
+  // Control audio playback when the play state toggles
+  useEffect(() => {
+    if (play) {
+      // Resume audio playback
+      if (currentPlaying) {
+        const audio = audioRefs.current[currentPlaying];
+        audio
+          ?.play()
+          .catch((error) => console.error("Audio playback failed:", error));
+      } else {
+        // If no audio is playing, play the first audio
+        playAudio(quran[0].src);
+      }
+    } else {
+      // Pause the current audio
+      pauseAudio();
+    }
+  }, [play]);
 
   return (
     <section
