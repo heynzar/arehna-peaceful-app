@@ -15,9 +15,11 @@ import AudioLine from "@/components/AudioLines";
 export default function Page() {
   const [play, setPlay] = useState(false);
   const [openApp, setOpenApp] = useState(false);
+
   const [openSounds, setOpenSounds] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const [openQuran, setOpenQuran] = useState(false);
+
   const [settings, setSettings] = useState({
     isHijri: false,
     isReapting: false,
@@ -97,7 +99,6 @@ export default function Page() {
             onClick={() => setOpenQuran(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
             aria-label="Play Quran sounds"
-            disabled={!play}
           >
             <span className="text-lg font-medium">Quran</span>
             <AudioLine play={play} />
@@ -107,7 +108,6 @@ export default function Page() {
             onClick={() => setOpenSounds(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
             aria-label="Play Sounds"
-            disabled={!play}
           >
             <span className="text-lg font-medium">Sounds</span>
             <AudioLine play={play} />
@@ -124,14 +124,24 @@ export default function Page() {
 
         <Timer play={play} />
 
-        <Quran open={openQuran} setOpen={setOpenQuran} play={play} />
+        <Quran
+          open={openQuran}
+          setOpen={setOpenQuran}
+          play={play}
+          openApp={openApp}
+        />
         <Settings
           open={openSettings}
           setOpen={setOpenSettings}
           settings={settings}
           setSettings={setSettings}
         />
-        <Sounds open={openSounds} setOpen={setOpenSounds} play={play} />
+        <Sounds
+          open={openSounds}
+          setOpen={setOpenSounds}
+          play={play}
+          openApp={openApp}
+        />
       </main>
     </>
   );

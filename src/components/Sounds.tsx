@@ -7,9 +7,11 @@ export default function Sounds({
   open,
   setOpen,
   play,
+  openApp,
 }: {
   open: boolean;
   play: boolean;
+  openApp: boolean;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
@@ -56,11 +58,10 @@ export default function Sounds({
     });
   };
 
-  // Play default sounds when `play` is true
   useEffect(() => {
-    if (play) {
-      toggleAudio(sounds[1].src); // Sound 1
-      toggleAudio(sounds[4].src); // Sound 4
+    if (openApp) {
+      toggleAudio(sounds[1].src);
+      toggleAudio(sounds[4].src);
     }
   }, [play]);
 

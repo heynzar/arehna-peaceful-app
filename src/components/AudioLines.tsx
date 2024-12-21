@@ -17,7 +17,7 @@ export default function AudioLine({ play }: { play: boolean }) {
     if (play) {
       interval = setInterval(() => {
         setActivePaths((prev) => (prev + 1) % pathVariants.length);
-      }, 300); // Switch paths every 500ms
+      }, 500);
     }
 
     return () => {

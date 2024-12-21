@@ -9,9 +9,11 @@ export default function Quran({
   open,
   setOpen,
   play,
+  openApp,
 }: {
   play: boolean;
   open: boolean;
+  openApp: boolean;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
@@ -76,7 +78,7 @@ export default function Quran({
   };
 
   useEffect(() => {
-    if (play) {
+    if (openApp) {
       toggleAudio(quran[0].src);
     }
   }, [play]);
