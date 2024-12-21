@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import bg1 from "@/assets/bg.jpg";
+import bg1 from "@/assets/bg.jpeg";
 import bg3 from "@/assets/bg3.gif";
 import { Dispatch, SetStateAction } from "react";
 import { X } from "lucide-react";

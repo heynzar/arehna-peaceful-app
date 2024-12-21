@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { poppins } from "@/app/font";
-import bg from "@/assets/bg.jpg";
+import bg from "@/assets/bg.jpeg";
 
 import "./globals.css";
 export const metadata: Metadata = {

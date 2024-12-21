@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from "react";
 
-import bg from "@/assets/bg.jpg";
-import { Settings as SettingsIcon } from "lucide-react";
+import bg from "@/assets/bg.jpeg";
+import {
+  ArrowUpRight,
+  Keyboard as KeyboardIcon,
+  Settings as SettingsIcon,
+} from "lucide-react";
 
 import Quran from "@/components/Quran";
+import Keyboard from "@/components/Keyboard";
 import Settings from "@/components/Settings";
 import Sounds from "@/components/Sounds";
 import Time from "@/components/Time";
@@ -19,6 +24,7 @@ export default function Page() {
   const [openSounds, setOpenSounds] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const [openQuran, setOpenQuran] = useState(false);
+  const [openKeyboard, setOpenKeyboard] = useState(false);
 
   const [settings, setSettings] = useState({
     isHijri: false,
@@ -122,7 +128,29 @@ export default function Page() {
           </button>
         </section>
 
-        <Timer play={play} />
+        <div className="w-full flex justify-between items-center mt-auto">
+          <a
+            href="#"
+            className="flex gap-1 items-end hover:opacity-70 transition-opacity duration-300"
+          >
+            <span className="underline underline-offset-4">
+              chrome extension
+            </span>
+            <ArrowUpRight strokeWidth={1} size={20} />
+          </a>
+
+          <div className="flex items-center gap-2">
+            <Timer play={play} />
+            <button
+              onClick={() => setOpenKeyboard(true)}
+              className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+            >
+              <KeyboardIcon className="size-5" size={20} strokeWidth={1.5} />
+            </button>
+          </div>
+        </div>
+
+        <Keyboard open={openKeyboard} setOpen={setOpenKeyboard} />
 
         <Quran
           open={openQuran}

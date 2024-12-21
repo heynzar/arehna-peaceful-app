@@ -47,7 +47,7 @@ const Timer: React.FC<{ play: boolean }> = ({ play }) => {
   const formatTime = (value: number) => String(value).padStart(2, "0");
 
   return (
-    <div className="min-w-[100px] text-center ml-auto mt-auto text-lg backdrop-blur-sm rounded-lg px-4 border border-white/20">
+    <div className="min-w-[100px] text-center text-lg backdrop-blur-sm rounded-lg px-4 border border-white/20">
       {`${time.horses}:${formatTime(time.minutes)}:${formatTime(time.seconds)}`}
     </div>
   );
