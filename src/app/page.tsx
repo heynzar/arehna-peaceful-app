@@ -10,8 +10,10 @@ import Settings from "@/components/Settings";
 import Sounds from "@/components/Sounds";
 import Time from "@/components/Time";
 import Timer from "@/components/Timer";
+import AudioLine from "@/components/AudioLines";
 
 export default function Page() {
+  const [play, setPlay] = useState(false);
   const [openApp, setOpenApp] = useState(false);
   const [openSounds, setOpenSounds] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
@@ -23,21 +25,31 @@ export default function Page() {
   });
 
   const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === " ") {
       e.preventDefault();
-      setOpenApp(true);
+
+      if (!openApp) {
+        setOpenApp(true);
+        setPlay(true);
+      } else {
+        setPlay((prevPlay) => !prevPlay);
+      }
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (!openApp) {
+        setOpenApp(true);
+        setPlay(true);
+      }
     }
   };
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
-
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [openApp]);
 
-  console.log(settings.bg);
   return (
     <>
       <div
@@ -58,7 +70,13 @@ export default function Page() {
       >
         <Time isHijri={settings.isHijri} />
         <div className="mt-5">
-          <button onClick={() => setOpenApp(true)} className="key__button">
+          <button
+            onClick={() => {
+              setOpenApp(true);
+              setPlay(true);
+            }}
+            className="key__button"
+          >
             START
           </button>
         </div>
@@ -79,39 +97,41 @@ export default function Page() {
             onClick={() => setOpenQuran(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
             aria-label="Play Quran sounds"
+            disabled={!play}
           >
             <span className="text-lg font-medium">Quran</span>
-            <AudioLines />
+            <AudioLine play={play} />
           </button>
 
           <button
             onClick={() => setOpenSounds(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
-            aria-label="Play Quran sounds"
+            aria-label="Play Sounds"
+            disabled={!play}
           >
             <span className="text-lg font-medium">Sounds</span>
-            <AudioLines />
+            <AudioLine play={play} />
           </button>
 
           <button
             onClick={() => setOpenSettings(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-min"
-            aria-label="Play Quran sounds"
+            aria-label="Open settings"
           >
             <SettingsIcon />
           </button>
         </section>
 
-        <Timer play={openApp} />
+        <Timer play={play} />
 
-        <Quran open={openQuran} setOpen={setOpenQuran} play={openApp} />
+        <Quran open={openQuran} setOpen={setOpenQuran} play={play} />
         <Settings
           open={openSettings}
           setOpen={setOpenSettings}
           settings={settings}
           setSettings={setSettings}
         />
-        <Sounds open={openSounds} setOpen={setOpenSounds} play={openApp} />
+        <Sounds open={openSounds} setOpen={setOpenSounds} play={play} />
       </main>
     </>
   );
