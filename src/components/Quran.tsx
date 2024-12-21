@@ -10,10 +10,12 @@ export default function Quran({
   setOpen,
   play,
   openApp,
+  selectedSurah,
 }: {
   play: boolean;
   open: boolean;
   openApp: boolean;
+  selectedSurah: number;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
@@ -97,7 +99,7 @@ export default function Quran({
   // Play the first audio when the app starts (only once)
   useEffect(() => {
     if (openApp && !initialized) {
-      playAudio(quran[0].src);
+      playAudio(quran[selectedSurah].src);
       setInitialized(true);
     }
   }, [openApp]);

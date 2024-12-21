@@ -5,6 +5,8 @@ import bg1 from "@/assets/bg.jpg";
 import bg3 from "@/assets/bg3.gif";
 import { Dispatch, SetStateAction } from "react";
 import { X } from "lucide-react";
+import { quran } from "@/lib/data";
+import { ruqaa } from "@/app/font";
 
 export default function Settings({
   open,
@@ -15,14 +17,14 @@ export default function Settings({
   open: boolean;
   settings: {
     isHijri: boolean;
-    isReapting: boolean;
+    selectedSurah: number;
     bg: string;
   };
   setOpen: Dispatch<SetStateAction<boolean>>;
   setSettings: Dispatch<
     SetStateAction<{
       isHijri: boolean;
-      isReapting: boolean;
+      selectedSurah: number;
       bg: string;
     }>
   >;
@@ -37,6 +39,11 @@ export default function Settings({
       const fileUrl = URL.createObjectURL(file);
       setSettings((prev) => ({ ...prev, bg: fileUrl }));
     }
+  };
+
+  const handleSurahChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = parseInt(event.target.value, 10);
+    setSettings((prev) => ({ ...prev, selectedSurah: value }));
   };
 
   return (
@@ -75,27 +82,21 @@ export default function Settings({
             </div>
           </div>
 
-          <div className="mb-4 flex justify-between items-center">
-            <span className="text-sm opacity-80">
-              Toggle Quran Playing Method
-            </span>
-            <div
-              onClick={() =>
-                setSettings((prev) => ({
-                  ...prev,
-                  isReapting: !prev.isReapting,
-                }))
-              }
-              className={`${
-                settings.isReapting ? "bg-zinc-50" : "bg-zinc-700"
-              } w-9 cursor-pointer transition-colors duration-300 rounded-full p-0.5`}
+          <div className="mb-2 flex justify-between items-center">
+            <span className="text-sm opacity-80">Select the Default Surah</span>
+
+            <select
+              onChange={handleSurahChange}
+              dir="rtl"
+              className={`${ruqaa.className} bg-zinc-950 cursor-pointer hover:text-zinc-300 transition-colors`}
+              value={settings.selectedSurah}
             >
-              <div
-                className={`${
-                  settings.isReapting && "translate-x-4"
-                } size-4 rounded-full transition-transform duration-300 bg-zinc-950`}
-              ></div>
-            </div>
+              {quran.map(({ name }, index) => (
+                <option key={index} value={index}>
+                  {name}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <span>Backgrounds</span>

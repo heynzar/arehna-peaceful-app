@@ -22,7 +22,7 @@ export default function Page() {
 
   const [settings, setSettings] = useState({
     isHijri: false,
-    isReapting: false,
+    selectedSurah: 0,
     bg: `${bg.src}`,
   });
 
@@ -129,6 +129,7 @@ export default function Page() {
           setOpen={setOpenQuran}
           play={play}
           openApp={openApp}
+          selectedSurah={settings.selectedSurah}
         />
         <Settings
           open={openSettings}
