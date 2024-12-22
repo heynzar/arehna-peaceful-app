@@ -126,8 +126,8 @@ export default function Settings({
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             />
             <div className="flex items-center justify-center h-full w-full rounded-lg bg-zinc-800 group-hover:bg-zinc-700 transition-colors border border-zinc-700">
-              <p className="text-neutral-400 text-sm group-hover:text-neutral-200 transition-colors">
-                Upload File
+              <p className="text-neutral-400 text-[0.7rem] group-hover:text-neutral-200 transition-colors">
+                Upload Image
               </p>
             </div>
           </div>

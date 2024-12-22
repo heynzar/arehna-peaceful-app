@@ -36,14 +36,12 @@ body {
   height: 50px;
   border: 1px solid #f2f2f2;
   border-radius: 10px;
-  text-shadow: 0 0.5px 1px #777, 0 2px 6px #f2f2f2;
   background: -webkit-linear-gradient(
     top,
     #f9f9f9 0%,
     #d2d2d2 80%,
     #c0c0c0 100%
   );
-  font-family: sans-serif;
   display: inline-block;
   transition: box-shadow 0.3s ease, transform 0.15s ease;
   box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 6px 0 #c0c0c0,
@@ -72,7 +70,6 @@ body {
   color: #555;
   cursor: pointer;
   height: 30px;
-  text-shadow: 0 0.5px 1px #777, 0 2px 6px #f2f2f2;
   border: 1px solid #f2f2f2;
   border-radius: 10px;
   background: -webkit-linear-gradient(
@@ -81,7 +78,6 @@ body {
     #d2d2d2 80%,
     #c0c0c0 100%
   );
-  font-family: sans-serif;
   transition: box-shadow 0.3s ease, transform 0.15s ease;
   box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 6px 0 #c0c0c0,
     0 8px 17px rgba(68, 68, 68, 0.4), 2px 1px 4px rgba(68, 68, 68, 0.25),
@@ -100,4 +96,24 @@ body {
     0 0px 30px rgba(68, 68, 68, 0.15), 2px 2px 4px rgba(68, 68, 68, 0.25),
     -2px 2px 4px rgba(68, 68, 68, 0.25), 0 0px 4px rgba(68, 68, 68, 0.25);
   transform: translateY(6px);
+}
+
+.key__button_3 {
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #555;
+  padding: 2px 10px;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+  background: -webkit-linear-gradient(
+    top,
+    #f9f9f9 0%,
+    #d2d2d2 80%,
+    #c0c0c0 100%
+  );
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 6px 0 #c0c0c0,
+    0 8px 17px rgba(68, 68, 68, 0.4), 2px 1px 4px rgba(68, 68, 68, 0.25),
+    -2px 1px 4px rgba(68, 68, 68, 0.25), 0 9px 16px rgba(68, 68, 68, 0.1);
 }
