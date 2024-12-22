@@ -48,6 +48,26 @@ export default function Page() {
         setOpenApp(true);
         setPlay(true);
       }
+    } else if (e.key === "q") {
+      setOpenQuran((prevPlay) => !prevPlay);
+      setOpenKeyboard(false);
+      setOpenSounds(false);
+      setOpenSettings(false);
+    } else if (e.key === "s") {
+      setOpenQuran(false);
+      setOpenKeyboard(false);
+      setOpenSounds((prevPlay) => !prevPlay);
+      setOpenSettings(false);
+    } else if (e.key === "p") {
+      setOpenQuran(false);
+      setOpenKeyboard(false);
+      setOpenSounds(false);
+      setOpenSettings((prevPlay) => !prevPlay);
+    } else if (e.key === "k") {
+      setOpenQuran(false);
+      setOpenKeyboard((prevPlay) => !prevPlay);
+      setOpenSounds(false);
+      setOpenSettings(false);
     }
   };
 

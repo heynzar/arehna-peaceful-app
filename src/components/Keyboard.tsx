@@ -27,8 +27,8 @@ export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {
 
   return (
     <section className="fixed inset-0 flex items-center justify-center w-screen h-screen scale-150 bg-black/20 backdrop-blur-sm">
-      <div className="w-full max-w-[360px] rounded-2xl border border-white/15 bg-zinc-950 p-4">
-        <header className="mb-4 flex items-center">
+      <div className="w-full max-w-[350px] rounded-2xl border border-white/15 bg-zinc-950 p-4">
+        <header className="flex items-center">
           <h2>Keyboard Shortcuts</h2>
           <button
             onClick={() => setOpen(false)}
@@ -39,7 +39,7 @@ export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {
           </button>
         </header>
 
-        <div className="space-y-3">
+        <div className="space-y-3 my-4">
           {shortcuts.map(({ action, key, width }) => (
             <div
               key={action}
