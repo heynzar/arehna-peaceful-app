@@ -26,10 +26,20 @@ export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {
   if (!open) return null;
 
   return (
-    <section className="fixed inset-0 flex items-center justify-center w-screen h-screen scale-150 bg-black/20 backdrop-blur-sm">
-      <div className="w-full max-w-[350px] rounded-2xl border border-white/15 bg-zinc-950 p-4">
+    <section
+      aria-hidden={!open}
+      aria-labelledby="keyboard-shortcuts-title"
+      role="dialog"
+      className="fixed inset-0 scale-150 flex items-center justify-center w-screen h-screen bg-black/20 backdrop-blur-sm"
+    >
+      <div
+        className="w-full max-w-[350px] rounded-2xl border border-white/15 bg-zinc-950 p-4"
+        role="document"
+      >
         <header className="flex items-center">
-          <h2>Keyboard Shortcuts</h2>
+          <h2 id="keyboard-shortcuts-title" className="font-medium text-white">
+            Keyboard Shortcuts
+          </h2>
           <button
             onClick={() => setOpen(false)}
             className="ml-auto rounded-lg bg-zinc-900 p-1 hover:text-white/80"
@@ -46,7 +56,12 @@ export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {
               className="flex items-center justify-between text-sm text-zinc-300"
             >
               <span>{action}</span>
-              <kbd className={`key__button_3 scale-90 ${width ?? ""}`}>
+              <kbd
+                className={`key__button_3 scale-90 ${
+                  width ?? ""
+                } inline-flex items-center justify-center rounded-md bg-zinc-800 text-white px-2 py-1`}
+                aria-label={`Key for ${action}`}
+              >
                 {key}
               </kbd>
             </div>
