@@ -49,10 +49,9 @@ export default function Page() {
 
   const handleKeyPress = useCallback(
     (e: KeyboardEvent) => {
-      e.preventDefault();
-
       switch (e.key.toLowerCase()) {
         case " ":
+          e.preventDefault();
           if (!isAppOpen) toggleApp();
           else setIsPlaying((prev) => !prev);
           break;
@@ -119,6 +118,7 @@ export default function Page() {
             onClick={toggleApp}
             className="key__button"
             aria-label="Start the application"
+            tabIndex={0}
           >
             START
           </button>
@@ -137,6 +137,7 @@ export default function Page() {
 
         <section className="scale-125 mt-8 flex items-center w-full max-w-[400px] gap-2">
           <button
+            tabIndex={1}
             onClick={() => setIsQuranOpen(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
             aria-label="Open Quran"
@@ -146,6 +147,7 @@ export default function Page() {
           </button>
 
           <button
+            tabIndex={2}
             onClick={() => setIsSoundsOpen(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
             aria-label="Open Sounds"

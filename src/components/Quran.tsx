@@ -23,9 +23,9 @@ export default function Quran({
   const [audioPositions, setAudioPositions] = useState<{
     [key: string]: number;
   }>({});
-  const [volume, setVolume] = useState<number>(1); // Global volume (1 is max, 0 is muted)
-  const [muted, setMuted] = useState<boolean>(false); // Track if audio is muted
-  const [initialized, setInitialized] = useState<boolean>(false); // Tracks if the first audio has already been played
+  const [volume, setVolume] = useState<number>(1);
+  const [muted, setMuted] = useState<boolean>(false);
+  const [initialized, setInitialized] = useState<boolean>(false);
 
   const playAudio = (src: string) => {
     if (!audioRefs.current[src]) {
@@ -57,7 +57,7 @@ export default function Quran({
   };
 
   const toggleAudio = (src: string) => {
-    if (currentPlaying && currentPlaying === src) {
+    if (currentPlaying === src) {
       pauseAudio();
       setCurrentPlaying(null);
     } else {
@@ -96,7 +96,6 @@ export default function Quran({
     });
   };
 
-  // Play the first audio when the app starts (only once)
   useEffect(() => {
     if (openApp && !initialized) {
       playAudio(quran[selectedSurah].src);
@@ -104,21 +103,16 @@ export default function Quran({
     }
   }, [openApp]);
 
-  // Control audio playback when the play state toggles
   useEffect(() => {
     if (play) {
-      // Resume audio playback
       if (currentPlaying) {
-        const audio = audioRefs.current[currentPlaying];
-        audio
+        audioRefs.current[currentPlaying]
           ?.play()
           .catch((error) => console.error("Audio playback failed:", error));
       } else {
-        // If no audio is playing, play the first audio
         playAudio(quran[selectedSurah].src);
       }
     } else {
-      // Pause the current audio
       pauseAudio();
     }
   }, [play]);
@@ -128,19 +122,30 @@ export default function Quran({
       className={`${ruqaa.className} ${
         open ? "flex" : "hidden"
       } justify-center items-center scale-125 absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm`}
+      aria-hidden={!open}
     >
-      <div className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-white/15">
+      <div
+        className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-white/15"
+        role="dialog"
+        aria-labelledby="quran-title"
+        aria-describedby="quran-description"
+      >
+        <h1 id="quran-title" className="sr-only">
+          Quran Player
+        </h1>
+        <p id="quran-description" className="sr-only">
+          Play and manage the recitation of Quranic surahs.
+        </p>
+
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-4 w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
-            {muted ? (
-              <button onClick={toggleMute}>
-                <VolumeOff className="hover:text-white/80" />
-              </button>
-            ) : (
-              <button onClick={toggleMute}>
-                <Volume2 className="hover:text-white/80" />
-              </button>
-            )}
+            <button
+              onClick={toggleMute}
+              aria-label={muted ? "Unmute audio" : "Mute audio"}
+              className="hover:text-white/80"
+            >
+              {muted ? <VolumeOff /> : <Volume2 />}
+            </button>
             <input
               type="range"
               min="0"
@@ -148,20 +153,24 @@ export default function Quran({
               step="0.01"
               value={muted ? 0 : volume}
               onChange={(e) => changeVolume(parseFloat(e.target.value))}
+              aria-label="Volume control"
               className="w-full"
             />
           </div>
           <button
             onClick={() => setOpen(false)}
-            className="bg-zinc-900 p-1 rounded-lg "
+            className="bg-zinc-900 p-1 rounded-lg"
+            aria-label="Close Quran player"
           >
             <X className="hover:text-white/80" />
           </button>
         </div>
+
         <div
           dir="rtl"
           id="quran"
           className="flex flex-wrap gap-2 justify-center items-center mt-4"
+          role="list"
         >
           {quran.map(({ name, src }) => (
             <div
@@ -171,9 +180,13 @@ export default function Quran({
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"
               }`}
+              role="listitem"
             >
               <button
                 onClick={() => toggleAudio(src)}
+                aria-label={
+                  currentPlaying === src ? `Pause ${name}` : `Play ${name}`
+                }
                 className="w-full h-10 rounded-lg"
               >
                 <span className="text-center">{name}</span>
@@ -183,9 +196,10 @@ export default function Quran({
                 onClick={() => restartAudio(src)}
                 className={`${
                   currentPlaying === src
-                    ? " hover:bg-sky-300"
-                    : " hover:bg-zinc-700"
+                    ? "hover:bg-sky-300"
+                    : "hover:bg-zinc-700"
                 } p-2 rounded-md transition-colors`}
+                aria-label={`Restart ${name}`}
               >
                 <RotateCcw size={24} className="size-4" />
               </button>
