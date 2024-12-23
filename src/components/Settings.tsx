@@ -3,7 +3,7 @@
 import Image from "next/image";
 import bg1 from "@/assets/bg.jpeg";
 import bg3 from "@/assets/bg3.gif";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { X } from "lucide-react";
 import { quran } from "@/lib/data";
 import { ruqaa } from "@/app/font";
@@ -36,8 +36,12 @@ export default function Settings({
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const fileUrl = URL.createObjectURL(file);
-      setSettings((prev) => ({ ...prev, bg: fileUrl }));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setSettings((prev) => ({ ...prev, bg: base64String }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 

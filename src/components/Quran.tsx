@@ -115,7 +115,7 @@ export default function Quran({
           .catch((error) => console.error("Audio playback failed:", error));
       } else {
         // If no audio is playing, play the first audio
-        playAudio(quran[0].src);
+        playAudio(quran[selectedSurah].src);
       }
     } else {
       // Pause the current audio

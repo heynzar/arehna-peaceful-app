@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import bg from "@/assets/bg.jpeg";
 import {
   ArrowUpRight,
   Keyboard as KeyboardIcon,
   Settings as SettingsIcon,
 } from "lucide-react";
-
 import Quran from "@/components/Quran";
 import Keyboard from "@/components/Keyboard";
 import Settings from "@/components/Settings";
@@ -20,7 +18,6 @@ import AudioLine from "@/components/AudioLines";
 export default function Page() {
   const [play, setPlay] = useState(false);
   const [openApp, setOpenApp] = useState(false);
-
   const [openSounds, setOpenSounds] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const [openQuran, setOpenQuran] = useState(false);
@@ -32,10 +29,22 @@ export default function Page() {
     bg: `${bg.src}`,
   });
 
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const savedSettings = localStorage.getItem("settings");
+    if (savedSettings) {
+      setSettings(JSON.parse(savedSettings));
+    }
+  }, []);
+
+  // Save settings to localStorage when they change
+  useEffect(() => {
+    localStorage.setItem("settings", JSON.stringify(settings));
+  }, [settings]);
+
   const handleKeyPress = (e: KeyboardEvent) => {
     if (e.key === " ") {
       e.preventDefault();
-
       if (!openApp) {
         setOpenApp(true);
         setPlay(true);
