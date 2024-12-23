@@ -3,11 +3,15 @@
 import React, { useState, useEffect } from "react";
 
 const Timer: React.FC<{ play: boolean }> = ({ play }) => {
-  const [time, setTime] = useState({
-    horses: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [time, setTime] = useState({ horses: 0, minutes: 0, seconds: 0 });
+
+  // Load saved time on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("timer");
+    if (saved) {
+      setTime(JSON.parse(saved));
+    }
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
@@ -17,10 +21,8 @@ const Timer: React.FC<{ play: boolean }> = ({ play }) => {
         setTime((prevTime) => {
           let { horses, minutes, seconds } = prevTime;
 
-          // Increment seconds
           seconds += 1;
 
-          // Handle overflow for seconds and minutes
           if (seconds >= 60) {
             seconds = 0;
             minutes += 1;
@@ -31,12 +33,11 @@ const Timer: React.FC<{ play: boolean }> = ({ play }) => {
             horses += 1;
           }
 
-          return { horses, minutes, seconds };
+          const newTime = { horses, minutes, seconds };
+          localStorage.setItem("timer", JSON.stringify(newTime));
+          return newTime;
         });
       }, 1000);
-    } else {
-      // Clear the interval if play is false
-      if (timer) clearInterval(timer);
     }
 
     return () => {
