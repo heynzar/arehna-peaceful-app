@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import bg from "@/assets/bg.jpeg";
 import {
   ArrowUpRight,
@@ -16,17 +16,17 @@ import Timer from "@/components/Timer";
 import AudioLine from "@/components/AudioLines";
 
 export default function Page() {
-  const [play, setPlay] = useState(false);
-  const [openApp, setOpenApp] = useState(false);
-  const [openSounds, setOpenSounds] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
-  const [openQuran, setOpenQuran] = useState(false);
-  const [openKeyboard, setOpenKeyboard] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isAppOpen, setIsAppOpen] = useState(false);
+  const [isSoundsOpen, setIsSoundsOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isQuranOpen, setIsQuranOpen] = useState(false);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
 
   const [settings, setSettings] = useState({
     isHijri: false,
     selectedSurah: 0,
-    bg: `${bg.src}`,
+    bg: bg.src,
   });
 
   // Load settings from localStorage on mount
@@ -42,50 +42,58 @@ export default function Page() {
     localStorage.setItem("settings", JSON.stringify(settings));
   }, [settings]);
 
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === " ") {
-      e.preventDefault();
-      if (!openApp) {
-        setOpenApp(true);
-        setPlay(true);
-      } else {
-        setPlay((prevPlay) => !prevPlay);
-      }
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      if (!openApp) {
-        setOpenApp(true);
-        setPlay(true);
-      }
-    } else if (e.key === "q") {
-      setOpenQuran((prevPlay) => !prevPlay);
-      setOpenKeyboard(false);
-      setOpenSounds(false);
-      setOpenSettings(false);
-    } else if (e.key === "s") {
-      setOpenQuran(false);
-      setOpenKeyboard(false);
-      setOpenSounds((prevPlay) => !prevPlay);
-      setOpenSettings(false);
-    } else if (e.key === "p") {
-      setOpenQuran(false);
-      setOpenKeyboard(false);
-      setOpenSounds(false);
-      setOpenSettings((prevPlay) => !prevPlay);
-    } else if (e.key === "k") {
-      setOpenQuran(false);
-      setOpenKeyboard((prevPlay) => !prevPlay);
-      setOpenSounds(false);
-      setOpenSettings(false);
-    }
+  const toggleApp = () => {
+    setIsAppOpen(true);
+    setIsPlaying(true);
   };
+
+  const handleKeyPress = useCallback(
+    (e: KeyboardEvent) => {
+      e.preventDefault();
+
+      switch (e.key.toLowerCase()) {
+        case " ":
+          if (!isAppOpen) toggleApp();
+          else setIsPlaying((prev) => !prev);
+          break;
+        case "enter":
+          if (!isAppOpen) toggleApp();
+          break;
+        case "q":
+          setIsQuranOpen((prev) => !prev);
+          setIsKeyboardOpen(false);
+          setIsSoundsOpen(false);
+          setIsSettingsOpen(false);
+          break;
+        case "s":
+          setIsSoundsOpen((prev) => !prev);
+          setIsQuranOpen(false);
+          setIsKeyboardOpen(false);
+          setIsSettingsOpen(false);
+          break;
+        case "p":
+          setIsSettingsOpen((prev) => !prev);
+          setIsQuranOpen(false);
+          setIsKeyboardOpen(false);
+          setIsSoundsOpen(false);
+          break;
+        case "k":
+          setIsKeyboardOpen((prev) => !prev);
+          setIsQuranOpen(false);
+          setIsSoundsOpen(false);
+          setIsSettingsOpen(false);
+          break;
+      }
+    },
+    [isAppOpen]
+  );
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [openApp]);
+  }, [handleKeyPress]);
 
   return (
     <>
@@ -98,21 +106,19 @@ export default function Page() {
           filter: "brightness(50%)",
         }}
         className="absolute inset-0 -z-10"
-      ></div>
+      />
 
       <main
         className={`${
-          openApp ? "hidden" : "flex"
-        }  flex h-full select-none  flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
+          isAppOpen ? "hidden" : "flex"
+        } flex h-full select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
       >
         <Time isHijri={settings.isHijri} />
         <div className="mt-5">
           <button
-            onClick={() => {
-              setOpenApp(true);
-              setPlay(true);
-            }}
+            onClick={toggleApp}
             className="key__button"
+            aria-label="Start the application"
           >
             START
           </button>
@@ -121,37 +127,37 @@ export default function Page() {
 
       <main
         className={`${
-          openApp ? "flex" : "hidden"
-        } w-full h-full  select-none  flex-col gap-4 justify-center items-center p-4`}
+          isAppOpen ? "flex" : "hidden"
+        } w-full h-full select-none flex-col gap-4 justify-center items-center p-4`}
       >
-        <div className="mb-auto"></div>
-        <section className="scale-125 py-4 w-full max-w-[400px] rounded-3xl  backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
+        <div className="mb-auto" />
+        <section className="scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
           <Time isHijri={settings.isHijri} />
         </section>
 
         <section className="scale-125 mt-8 flex items-center w-full max-w-[400px] gap-2">
           <button
-            onClick={() => setOpenQuran(true)}
+            onClick={() => setIsQuranOpen(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
-            aria-label="Play Quran sounds"
+            aria-label="Open Quran"
           >
             <span className="text-lg font-medium">Quran</span>
-            <AudioLine play={play} />
+            <AudioLine play={isPlaying} />
           </button>
 
           <button
-            onClick={() => setOpenSounds(true)}
+            onClick={() => setIsSoundsOpen(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
-            aria-label="Play Sounds"
+            aria-label="Open Sounds"
           >
             <span className="text-lg font-medium">Sounds</span>
-            <AudioLine play={play} />
+            <AudioLine play={isPlaying} />
           </button>
 
           <button
-            onClick={() => setOpenSettings(true)}
+            onClick={() => setIsSettingsOpen(true)}
             className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-min"
-            aria-label="Open settings"
+            aria-label="Open Settings"
           >
             <SettingsIcon />
           </button>
@@ -161,44 +167,45 @@ export default function Page() {
           <a
             href="#"
             className="flex gap-1 items-end hover:opacity-70 transition-opacity duration-300"
+            aria-label="Open Chrome Extension"
           >
             <span className="underline underline-offset-4">
-              chrome extension
+              Chrome Extension
             </span>
             <ArrowUpRight strokeWidth={1} size={20} />
           </a>
 
           <div className="flex items-center gap-2">
-            <Timer play={play} />
+            <Timer play={isPlaying} />
             <button
-              onClick={() => setOpenKeyboard(true)}
+              onClick={() => setIsKeyboardOpen(true)}
               className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+              aria-label="Open Keyboard"
             >
-              <KeyboardIcon className="size-5" size={20} strokeWidth={1.5} />
+              <KeyboardIcon size={20} strokeWidth={1.5} />
             </button>
           </div>
         </div>
 
-        <Keyboard open={openKeyboard} setOpen={setOpenKeyboard} />
-
+        <Keyboard open={isKeyboardOpen} setOpen={setIsKeyboardOpen} />
         <Quran
-          open={openQuran}
-          setOpen={setOpenQuran}
-          play={play}
-          openApp={openApp}
+          open={isQuranOpen}
+          setOpen={setIsQuranOpen}
+          play={isPlaying}
+          openApp={isAppOpen}
           selectedSurah={settings.selectedSurah}
         />
         <Settings
-          open={openSettings}
-          setOpen={setOpenSettings}
+          open={isSettingsOpen}
+          setOpen={setIsSettingsOpen}
           settings={settings}
           setSettings={setSettings}
         />
         <Sounds
-          open={openSounds}
-          setOpen={setOpenSounds}
-          play={play}
-          openApp={openApp}
+          open={isSoundsOpen}
+          setOpen={setIsSoundsOpen}
+          play={isPlaying}
+          openApp={isAppOpen}
         />
       </main>
     </>

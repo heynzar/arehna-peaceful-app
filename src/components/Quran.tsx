@@ -159,6 +159,7 @@ export default function Quran({
           </button>
         </div>
         <div
+          dir="rtl"
           id="quran"
           className="flex flex-wrap gap-2 justify-center items-center mt-4"
         >
