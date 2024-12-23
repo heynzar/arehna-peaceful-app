@@ -112,22 +112,29 @@ export default function Sounds({
 
   return (
     <section
-      className={`justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm ${
+      role="dialog"
+      aria-labelledby="sound-dialog-title"
+      aria-hidden={!open}
+      className={`absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm flex justify-center items-center ${
         open ? "flex" : "hidden"
       }`}
     >
-      <div className="p-4 w-full max-w-[496px] scale-125 rounded-2xl bg-zinc-950 border border-zinc-800">
+      <div
+        className="p-4 w-full max-w-[496px] scale-125 rounded-2xl bg-zinc-950 border border-zinc-800"
+        tabIndex={-1}
+      >
         <div className="flex justify-between w-full">
           <div className="flex items-center gap-4 w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
-            {muted ? (
-              <button onClick={toggleMute}>
+            <button
+              onClick={toggleMute}
+              aria-label={muted ? "Unmute audio" : "Mute audio"}
+            >
+              {muted ? (
                 <VolumeOff className="hover:text-white/80" />
-              </button>
-            ) : (
-              <button onClick={toggleMute}>
+              ) : (
                 <Volume2 className="hover:text-white/80" />
-              </button>
-            )}
+              )}
+            </button>
             <input
               type="range"
               min="0"
@@ -135,25 +142,34 @@ export default function Sounds({
               step="0.01"
               value={muted ? 0 : volume}
               onChange={(e) => changeVolume(parseFloat(e.target.value))}
+              aria-label="Volume control"
               className="w-full"
             />
           </div>
           <button
             onClick={() => setOpen(false)}
+            aria-label="Close dialog"
             className="bg-zinc-900 p-1 rounded-lg"
           >
             <X className="hover:text-white/80" />
           </button>
         </div>
+        <h2 id="sound-dialog-title" className="sr-only">
+          Sound Controls
+        </h2>
         <div
           id="sounds"
+          role="region"
+          aria-live="polite"
           className="flex flex-wrap gap-2 justify-center items-center mt-4"
         >
           {sounds.map(({ Icon, src }) => (
             <button
               onClick={() => toggleAudio(src)}
               key={src}
-              className={`size-[86px] cursor-pointer  transition-colors duration-300 flex items-center justify-center rounded-lg ${
+              aria-pressed={playingSounds.has(src)}
+              aria-label={playingSounds.has(src) ? `Pause sound` : `Play sound`}
+              className={`size-[86px] cursor-pointer transition-colors duration-300 flex items-center justify-center rounded-lg focus:outline focus:outline-offset-2 focus:outline-sky-500 ${
                 playingSounds.has(src)
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"
