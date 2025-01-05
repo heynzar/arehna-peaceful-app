@@ -115,16 +115,16 @@ export default function Sounds({
       role="dialog"
       aria-labelledby="sound-dialog-title"
       aria-hidden={!open}
-      className={`absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm flex justify-center items-center ${
+      className={`absolute inset-0 justify-center items-center  w-screen h-screen bg-black/20 backdrop-blur-sm px-6 ${
         open ? "flex" : "hidden"
       }`}
     >
       <div
-        className="p-4 w-full max-w-[496px] scale-125 rounded-2xl bg-zinc-950 border border-zinc-800"
+        className="p-4 w-full md:scale-125 min-w-[270px] max-w-[496px] rounded-2xl bg-zinc-950 border border-zinc-800"
         tabIndex={-1}
       >
         <div className="flex justify-between w-full">
-          <div className="flex items-center gap-4 w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
+          <div className="flex items-center gap-4 w-[200px] md:w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
             <button
               onClick={toggleMute}
               aria-label={muted ? "Unmute audio" : "Mute audio"}
@@ -169,7 +169,7 @@ export default function Sounds({
               key={src}
               aria-pressed={playingSounds.has(src)}
               aria-label={playingSounds.has(src) ? `Pause sound` : `Play sound`}
-              className={`size-[86px] cursor-pointer transition-colors duration-300 flex items-center justify-center rounded-lg focus:outline focus:outline-offset-2 focus:outline-sky-500 ${
+              className={`size-[70px] md:size-[86px] cursor-pointer transition-colors duration-300 flex items-center justify-center rounded-lg focus:outline focus:outline-offset-2 focus:outline-sky-500 ${
                 playingSounds.has(src)
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"

@@ -53,7 +53,7 @@ const Time: React.FC<DateTimeDisplayProps> = ({ isHijri }) => {
 
   return (
     <div>
-      <h1 className="text-sm md:text-xl leading-8 font-normal md:leading-10 text-center">
+      <h1 className="text-base md:text-xl leading-8 font-normal md:leading-10 text-center">
         {currentDate}
       </h1>
       <h2 className="text-7xl md:text-8xl font-medium text-center">

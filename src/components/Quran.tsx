@@ -121,11 +121,11 @@ export default function Quran({
     <section
       className={`${ruqaa.className} ${
         open ? "flex" : "hidden"
-      } justify-center items-center scale-125 absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm`}
+      } justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6`}
       aria-hidden={!open}
     >
       <div
-        className="p-4 w-full max-w-[496px] scale-110 rounded-2xl bg-zinc-950 border border-white/15"
+        className="p-4 w-full md:scale-150 min-w-[270px] max-w-[496px] rounded-2xl bg-zinc-950 border border-zinc-800"
         role="dialog"
         aria-labelledby="quran-title"
         aria-describedby="quran-description"
@@ -138,7 +138,7 @@ export default function Quran({
         </p>
 
         <div className="flex justify-between w-full">
-          <div className="flex items-center gap-4 w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
+          <div className="flex items-center gap-4 w-[200px] md:w-[240px] rounded-lg bg-zinc-900 py-1 px-4">
             <button
               onClick={toggleMute}
               aria-label={muted ? "Unmute audio" : "Mute audio"}
@@ -175,7 +175,7 @@ export default function Quran({
           {quran.map(({ name, src }) => (
             <div
               key={name}
-              className={`h-10 w-[32%] transition-colors border border-zinc-800 duration-300 flex items-center justify-end px-1 rounded-lg ${
+              className={`md:h-10 w-[48%] min-w-max md:w-[32%] transition-colors border border-zinc-800 duration-300 flex items-center justify-end px-1 rounded-lg ${
                 currentPlaying === src
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"

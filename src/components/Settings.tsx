@@ -55,22 +55,25 @@ export default function Settings({
   return (
     <section
       aria-hidden={!open}
-      className={`flex justify-center scale-150 items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm`}
+      className={`flex justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6`}
     >
       <div
         role="dialog"
         aria-labelledby="settings-title"
         aria-describedby="settings-description"
-        className="p-4 w-full max-w-max rounded-2xl bg-zinc-950 border border-white/15"
+        className="p-4 w-full md:scale-150 min-w-[270px] max-w-max rounded-2xl bg-zinc-950 border border-zinc-800"
       >
         <div className="flex justify-between items-start">
           <div>
-            <h2 id="settings-title" className="font-medium">
+            <h2
+              id="settings-title"
+              className="font-medium text-lg md:text-base"
+            >
               App Settings
             </h2>
             <p
               id="settings-description"
-              className="text-[0.7rem] text-zinc-400"
+              className="md:text-[0.7rem] text-zinc-400"
             >
               Customize your preferences.
             </p>
@@ -91,7 +94,9 @@ export default function Settings({
               htmlFor="toggle-hijri"
               className="flex justify-between items-center pb-2"
             >
-              <span className="text-sm opacity-80">Toggle Hijri Date</span>
+              <span className="text-lg md:text-sm opacity-80">
+                Toggle Hijri Date
+              </span>
               <div
                 onClick={() =>
                   setSettings((prev) => ({ ...prev, isHijri: !prev.isHijri }))
@@ -126,7 +131,7 @@ export default function Settings({
               htmlFor="select-surah"
               className="flex justify-between items-center"
             >
-              <span className="text-sm opacity-80">
+              <span className="text-lg md:text-sm opacity-80">
                 Select the Default Surah
               </span>
               <select
@@ -146,12 +151,12 @@ export default function Settings({
           </div>
         </div>
 
-        <span className="text-sm opacity-80">
+        <span className="text-lg md:text-sm opacity-80">
           Select Or Upload A Background
         </span>
         <div
           id="backgrounds"
-          className="pl-1 flex flex-wrap gap-2 justify-start items-center mt-2"
+          className="pl-1 flex flex-wrap gap-2 justify-center items-center mt-2"
         >
           {[bg1, bg3].map((bg, index) => (
             <div
@@ -175,7 +180,7 @@ export default function Settings({
             </div>
           ))}
 
-          <div className="relative h-[60px] aspect-video cursor-pointer group">
+          <div className="relative h-[54px] aspect-video cursor-pointer group">
             <input
               type="file"
               accept="image/*"

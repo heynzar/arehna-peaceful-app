@@ -30,10 +30,10 @@ export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {
       aria-hidden={!open}
       aria-labelledby="keyboard-shortcuts-title"
       role="dialog"
-      className="fixed inset-0 scale-150 flex items-center justify-center w-screen h-screen bg-black/20 backdrop-blur-sm"
+      className="flex justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6"
     >
       <div
-        className="w-full max-w-[350px] rounded-2xl border border-white/15 bg-zinc-950 p-4"
+        className="p-4 w-full md:scale-150 min-w-[270px] max-w-[350px] rounded-2xl bg-zinc-950 border border-zinc-800"
         role="document"
       >
         <header className="flex items-center">

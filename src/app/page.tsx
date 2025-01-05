@@ -129,7 +129,7 @@ export default function Page() {
       <main
         className={`${
           isAppOpen ? "flex" : "hidden"
-        } w-full h-full select-none flex-col gap-4 justify-center items-center py-4 px-8`}
+        } w-full h-[100dvh] select-none flex-col gap-4 justify-center items-center py-4 px-8`}
       >
         <div className="mb-auto" />
         <section className="md:scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
