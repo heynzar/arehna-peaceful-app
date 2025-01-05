@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import bg from "@/assets/bg.jpeg";
 import {
   ArrowUpRight,
+  Info,
   Keyboard as KeyboardIcon,
   Settings as SettingsIcon,
 } from "lucide-react";
@@ -113,10 +114,10 @@ export default function Page() {
         } flex h-full select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
       >
         <Time isHijri={settings.isHijri} />
-        <div className="mt-5">
+        <div className="scale-75 mt-2 md:mt-5  md:scale-100">
           <button
             onClick={toggleApp}
-            className="key__button"
+            className="key__button "
             aria-label="Start the application"
             tabIndex={0}
           >
@@ -128,67 +129,79 @@ export default function Page() {
       <main
         className={`${
           isAppOpen ? "flex" : "hidden"
-        } w-full h-full select-none flex-col gap-4 justify-center items-center p-4`}
+        } w-full h-full select-none flex-col gap-4 justify-center items-center py-4 px-8`}
       >
         <div className="mb-auto" />
-        <section className="scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
+        <section className="md:scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
           <Time isHijri={settings.isHijri} />
         </section>
 
-        <section className="scale-125 mt-8 flex items-center w-full max-w-[400px] gap-2">
+        <section
+          id="control-buttons"
+          className="md:scale-125 md:mt-8 flex items-center w-full max-w-[400px] gap-2 "
+        >
           <button
             tabIndex={1}
             onClick={() => setIsQuranOpen(true)}
-            className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
+            className="key__button-2 flex items-center justify-center gap-2 w-full"
             aria-label="Open Quran"
           >
             <span className="text-lg font-medium">Quran</span>
             <AudioLine play={isPlaying} />
           </button>
 
-          <button
-            tabIndex={2}
-            onClick={() => setIsSoundsOpen(true)}
-            className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-full"
-            aria-label="Open Sounds"
-          >
-            <span className="text-lg font-medium">Sounds</span>
-            <AudioLine play={isPlaying} />
-          </button>
+          <div className="flex  items-center gap-2 w-full">
+            <button
+              tabIndex={2}
+              onClick={() => setIsSoundsOpen(true)}
+              className="key__button-2 flex items-center justify-center gap-2 w-full"
+              aria-label="Open Sounds"
+            >
+              <span className="text-lg font-medium">Sounds</span>
+              <AudioLine play={isPlaying} />
+            </button>
 
-          <button
-            onClick={() => setIsSettingsOpen(true)}
-            className="key__button-2 flex items-center justify-center gap-2 px-2 py-5 w-min"
-            aria-label="Open Settings"
-          >
-            <SettingsIcon />
-          </button>
+            <button
+              onClick={() => setIsSettingsOpen(true)}
+              className="key__button-2 flex items-center justify-center gap-2 w-min"
+              aria-label="Open Settings"
+            >
+              <SettingsIcon />
+            </button>
+          </div>
         </section>
 
         <div className="w-full flex justify-between items-center mt-auto">
-          <a
+          {/* <a
             href="#"
-            className="flex gap-1 items-end hover:opacity-70 transition-opacity duration-300"
+            className="hidden lg:flex gap-1 items-end hover:opacity-70 transition-opacity duration-300"
             aria-label="Open Chrome Extension"
           >
             <span className="underline underline-offset-4">
               Chrome Extension
             </span>
             <ArrowUpRight strokeWidth={1} size={20} />
-          </a>
+          </a> */}
+          <button
+            onClick={() => setIsKeyboardOpen(true)}
+            className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+            aria-label="Open Keyboard"
+          >
+            <Info size={20} strokeWidth={1.5} />
+          </button>
 
           <div className="flex items-center gap-2">
             <Timer play={isPlaying} />
+
             <button
               onClick={() => setIsKeyboardOpen(true)}
-              className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+              className="hidden lg:block backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
               aria-label="Open Keyboard"
             >
               <KeyboardIcon size={20} strokeWidth={1.5} />
             </button>
           </div>
         </div>
-
         <Keyboard open={isKeyboardOpen} setOpen={setIsKeyboardOpen} />
         <Quran
           open={isQuranOpen}

@@ -67,6 +67,7 @@ body {
   box-sizing: border-box;
   font-size: 22px;
   text-align: center;
+  padding: 20px 8px;
   color: #555;
   cursor: pointer;
   height: 30px;
@@ -116,4 +117,17 @@ body {
   box-shadow: 0 0 1px #888, 0 1px 0 #fff, 0 6px 0 #c0c0c0,
     0 8px 17px rgba(68, 68, 68, 0.4), 2px 1px 4px rgba(68, 68, 68, 0.25),
     -2px 1px 4px rgba(68, 68, 68, 0.25), 0 9px 16px rgba(68, 68, 68, 0.1);
+}
+
+@media (max-width: 375px) {
+  #control-buttons {
+    width: 100%;
+    margin-inline: auto;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .key__button-2 {
+    font-size: 14px;
+    padding: 10px 4px;
+  }
 }

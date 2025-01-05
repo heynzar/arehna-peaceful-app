@@ -16,6 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="Jc5y6LRT3HgaYzV07OPxQoH3i5wgGBTQk18Taxw1sm8"
+        />
+      </head>
       <body
         className={`${poppins.className} antialiased h-screen w-screen overflow-hidden relative`}
       >
