@@ -3,9 +3,10 @@
 import { useEffect, useState, useCallback } from "react";
 import bg from "@/assets/bg.jpeg";
 import {
-  ArrowUpRight,
   Info,
   Keyboard as KeyboardIcon,
+  Pause,
+  Play,
   Settings as SettingsIcon,
 } from "lucide-react";
 import Quran from "@/components/Quran";
@@ -188,9 +189,21 @@ export default function Page() {
           <button
             onClick={() => setIsInfoOpen(true)}
             className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
-            aria-label="Open Keyboard"
+            aria-label="Open About Section"
           >
             <Info size={20} strokeWidth={1.5} />
+          </button>
+
+          <button
+            onClick={() => setIsPlaying((prev) => !prev)}
+            className="hidden lg:block lg:ml-28 backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+            aria-label="Open Keyboard"
+          >
+            {isPlaying ? (
+              <Pause size={20} strokeWidth={1.5} />
+            ) : (
+              <Play size={20} strokeWidth={1.5} />
+            )}
           </button>
 
           <div className="flex items-center gap-2">
@@ -204,6 +217,18 @@ export default function Page() {
               <KeyboardIcon size={20} strokeWidth={1.5} />
             </button>
           </div>
+
+          <button
+            onClick={() => setIsPlaying((prev) => !prev)}
+            className="lg:hidden backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+            aria-label="Play/Pause button"
+          >
+            {isPlaying ? (
+              <Pause size={20} strokeWidth={1.5} />
+            ) : (
+              <Play size={20} strokeWidth={1.5} />
+            )}
+          </button>
         </div>
         <Keyboard open={isKeyboardOpen} setOpen={setIsKeyboardOpen} />
         <InfoSection open={isInfoOpen} setOpen={setIsInfoOpen} />

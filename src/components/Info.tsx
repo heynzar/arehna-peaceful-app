@@ -4,24 +4,10 @@ import { ArrowUpRight, X } from "lucide-react";
 import { SetStateAction } from "react";
 import { ruqaa } from "@/app/font";
 
-interface KeyboardShortcut {
-  action: string;
-  key: string;
-  width?: string;
-}
-
 interface InfoSectionProps {
   open: boolean;
   setOpen: (value: SetStateAction<boolean>) => void;
 }
-
-const shortcuts: KeyboardShortcut[] = [
-  { action: "Play • Pause", key: "Space", width: "!px-6" },
-  { action: "Open/Close Quran Panel", key: "Q" },
-  { action: "Open/Close Sound Library", key: "S" },
-  { action: "Open/Close Preferences", key: "P" },
-  { action: "Open/Close Keyboard Shortcuts", key: "K" },
-];
 
 export default function InfoSection({ open, setOpen }: InfoSectionProps) {
   if (!open) return null;
@@ -29,7 +15,7 @@ export default function InfoSection({ open, setOpen }: InfoSectionProps) {
   return (
     <section
       aria-hidden={!open}
-      aria-labelledby="keyboard-shortcuts-title"
+      aria-labelledby="about-title"
       role="dialog"
       className="flex justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6"
     >
@@ -38,14 +24,14 @@ export default function InfoSection({ open, setOpen }: InfoSectionProps) {
         role="document"
       >
         <header className="flex items-center">
-          <h2 id="info-title" className="text-white/80">
+          <h2 id="about-title" className="text-white/80">
             About Arehna
           </h2>
 
           <button
             onClick={() => setOpen(false)}
             className="ml-auto rounded-lg bg-zinc-900 p-1 hover:text-white/80"
-            aria-label="Close keyboard shortcuts"
+            aria-label="Close About Section"
           >
             <X />
           </button>
