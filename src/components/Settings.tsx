@@ -156,7 +156,7 @@ export default function Settings({
         </span>
         <div
           id="backgrounds"
-          className="pl-1 flex flex-wrap gap-2 justify-center items-center mt-2"
+          className="pl-1 flex flex-wrap gap-2 justify-center items-center my-2"
         >
           {[bg1, bg3].map((bg, index) => (
             <div
@@ -195,17 +195,6 @@ export default function Settings({
             </div>
           </div>
         </div>
-
-        <p className="text-[0.7rem] mt-4 -mb-1 text-center text-zinc-400">
-          Developed by{" "}
-          <a
-            href="https://nzar.dev"
-            target="_blank"
-            className="underline underline-offset-2"
-          >
-            Nzar
-          </a>
-        </p>
       </div>
     </section>
   );

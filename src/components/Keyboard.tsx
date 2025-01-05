@@ -20,6 +20,7 @@ const shortcuts: KeyboardShortcut[] = [
   { action: "Open/Close Sound Library", key: "S" },
   { action: "Open/Close Preferences", key: "P" },
   { action: "Open/Close Keyboard Shortcuts", key: "K" },
+  { action: "Open/Close App Info", key: "i" },
 ];
 
 export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {

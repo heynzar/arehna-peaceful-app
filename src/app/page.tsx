@@ -15,6 +15,7 @@ import Sounds from "@/components/Sounds";
 import Time from "@/components/Time";
 import Timer from "@/components/Timer";
 import AudioLine from "@/components/AudioLines";
+import InfoSection from "@/components/Info";
 
 export default function Page() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -23,6 +24,7 @@ export default function Page() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isQuranOpen, setIsQuranOpen] = useState(false);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
 
   const [settings, setSettings] = useState({
     isHijri: false,
@@ -64,24 +66,35 @@ export default function Page() {
           setIsKeyboardOpen(false);
           setIsSoundsOpen(false);
           setIsSettingsOpen(false);
+          setIsInfoOpen(false);
           break;
         case "s":
           setIsSoundsOpen((prev) => !prev);
           setIsQuranOpen(false);
           setIsKeyboardOpen(false);
           setIsSettingsOpen(false);
+          setIsInfoOpen(false);
           break;
         case "p":
           setIsSettingsOpen((prev) => !prev);
           setIsQuranOpen(false);
           setIsKeyboardOpen(false);
           setIsSoundsOpen(false);
+          setIsInfoOpen(false);
           break;
         case "k":
           setIsKeyboardOpen((prev) => !prev);
           setIsQuranOpen(false);
           setIsSoundsOpen(false);
           setIsSettingsOpen(false);
+          setIsInfoOpen(false);
+          break;
+        case "i":
+          setIsInfoOpen((prev) => !prev);
+          setIsQuranOpen(false);
+          setIsSoundsOpen(false);
+          setIsSettingsOpen(false);
+          setIsKeyboardOpen(false);
           break;
       }
     },
@@ -172,18 +185,8 @@ export default function Page() {
         </section>
 
         <div className="w-full flex justify-between items-center mt-auto">
-          {/* <a
-            href="#"
-            className="hidden lg:flex gap-1 items-end hover:opacity-70 transition-opacity duration-300"
-            aria-label="Open Chrome Extension"
-          >
-            <span className="underline underline-offset-4">
-              Chrome Extension
-            </span>
-            <ArrowUpRight strokeWidth={1} size={20} />
-          </a> */}
           <button
-            onClick={() => setIsKeyboardOpen(true)}
+            onClick={() => setIsInfoOpen(true)}
             className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
             aria-label="Open Keyboard"
           >
@@ -203,6 +206,7 @@ export default function Page() {
           </div>
         </div>
         <Keyboard open={isKeyboardOpen} setOpen={setIsKeyboardOpen} />
+        <InfoSection open={isInfoOpen} setOpen={setIsInfoOpen} />
         <Quran
           open={isQuranOpen}
           setOpen={setIsQuranOpen}
