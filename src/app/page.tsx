@@ -17,6 +17,7 @@ import Time from "@/components/Time";
 import Timer from "@/components/Timer";
 import AudioLine from "@/components/AudioLines";
 import InfoSection from "@/components/Info";
+import HomePage from "@/components/HomePage";
 
 export default function Page() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -122,24 +123,26 @@ export default function Page() {
         className="absolute inset-0 -z-10"
       />
 
-      <main
-        className={`${
-          isAppOpen ? "hidden" : "flex"
-        } flex h-full overflow-hidden select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
-      >
-        <Time isHijri={settings.isHijri} />
-        <div className="scale-75 mt-2 md:mt-5  md:scale-100">
-          <button
-            onClick={toggleApp}
-            className="key__button "
-            aria-label="Start the application"
-            tabIndex={0}
-          >
-            START
-          </button>
-        </div>
-      </main>
-
+      <div>
+        <main
+          className={`${
+            isAppOpen ? "hidden" : "flex"
+          } flex h-screen  select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
+        >
+          <Time isHijri={settings.isHijri} />
+          <div className="scale-75 mt-2 md:mt-5  md:scale-100">
+            <button
+              onClick={toggleApp}
+              className="key__button "
+              aria-label="Start the application"
+              tabIndex={0}
+            >
+              START
+            </button>
+          </div>
+        </main>
+        <HomePage />
+      </div>
       <main
         className={`${
           isAppOpen ? "flex" : "hidden"
