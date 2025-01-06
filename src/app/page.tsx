@@ -125,7 +125,7 @@ export default function Page() {
       <main
         className={`${
           isAppOpen ? "hidden" : "flex"
-        } flex h-full select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
+        } flex h-full overflow-hidden select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
       >
         <Time isHijri={settings.isHijri} />
         <div className="scale-75 mt-2 md:mt-5  md:scale-100">
@@ -143,7 +143,7 @@ export default function Page() {
       <main
         className={`${
           isAppOpen ? "flex" : "hidden"
-        } w-full h-[100dvh] select-none flex-col gap-4 justify-center items-center py-4 px-8`}
+        } w-full h-[100dvh] overflow-hidden select-none flex-col gap-4 justify-center items-center py-4 px-8`}
       >
         <div className="mb-auto" />
         <section className="md:scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">

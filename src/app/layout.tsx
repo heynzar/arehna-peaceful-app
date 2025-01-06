@@ -19,11 +19,11 @@ export default function RootLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="Jc5y6LRT3HgaYzV07OPxQoH3i5wgGBTQk18Taxw1sm8"
+          content="1gdzJ54Nkkts333q1oMVKv-c54NiQV0cSRV7rPny3Ow"
         />
       </head>
       <body
-        className={`${poppins.className} antialiased h-screen w-screen overflow-hidden relative`}
+        className={`${poppins.className} antialiased h-screen w-screen overflow-x-hidden relative`}
       >
         <div
           style={{
@@ -35,6 +35,7 @@ export default function RootLayout({
           }}
           className="absolute inset-0 -z-10"
         ></div>
+
         {children}
       </body>
     </html>
