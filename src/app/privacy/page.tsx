@@ -2,9 +2,9 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <main className="w-full bg-black">
-      <article className="w-full  max-w-screen-md mx-auto p-6 font-sans bg-gray-50 text-gray-800">
-        <h1 className="text-3xl font-bold mb-4">
+    <main className="w-full bg-sky-50 py-4">
+      <article className="w-full  max-w-screen-md mx-auto p-6 font-sans bg-sky-50 text-gray-800">
+        <h1 className="text-3xl text-sky-900 font-bold mb-4">
           Privacy Policy for Arehna - Your Calm Companion
         </h1>
 
@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
           outlines our practices regarding user information.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-2">
+        <h2 className="text-2xl text-sky-900 font-semibold mb-2">
           1. What Information Do We Collect?
         </h2>
         <p className="mb-6">
@@ -23,7 +23,7 @@ const PrivacyPolicy = () => {
           not transmit any information to external servers or third parties.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-2">
+        <h2 className="text-2xl text-sky-900 font-semibold mb-2">
           2. How Do We Use Information?
         </h2>
         <p className="mb-6">
@@ -33,7 +33,7 @@ const PrivacyPolicy = () => {
           experience is personalized without requiring any data collection.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-2">
+        <h2 className="text-2xl text-sky-900 font-semibold mb-2">
           3. What Information Do We Share?
         </h2>
         <p className="mb-6">
@@ -42,21 +42,25 @@ const PrivacyPolicy = () => {
           private and confined to your local device.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-2">4. Information Security</h2>
+        <h2 className="text-2xl text-sky-900 font-semibold mb-2">
+          4. Information Security
+        </h2>
         <p className="mb-6">
           Arehna is designed to work without accessing or transmitting any user
           data. By using local storage, we ensure that your preferences and
           progress remain secure and private on your own device.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-2">5. Data Retention</h2>
+        <h2 className="text-2xl text-sky-900 font-semibold mb-2">
+          5. Data Retention
+        </h2>
         <p className="mb-6">
           Since no user data is collected, there is no data to retain. Any
           settings or preferences are saved locally on your browser and can be
           cleared at any time by managing your browser's local storage settings.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-2">
+        <h2 className="text-2xl text-sky-900 font-semibold mb-2">
           6. Changes to This Privacy Policy
         </h2>
         <p className="mb-6">
@@ -66,7 +70,9 @@ const PrivacyPolicy = () => {
           be effective immediately upon posting.
         </p>
 
-        <h2 className="text-2xl font-semibold mb-2">7. Contact Us</h2>
+        <h2 className="text-2xl text-sky-900 font-semibold mb-2">
+          7. Contact Us
+        </h2>
         <p className="mb-6">
           If you have any questions or concerns about this privacy policy, feel
           free to reach out to us at{" "}

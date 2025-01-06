@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Headphones,
-  Star,
-  Download,
   Settings,
   Heart,
   Timer,
@@ -10,7 +8,12 @@ import {
   Leaf,
 } from "lucide-react";
 import Head from "next/head";
-import Link from "next/link";
+import Image from "next/image";
+
+import chrome from "@/assets/svg/chrome.svg";
+import firefox from "@/assets/svg/firefox.svg";
+import safari from "@/assets/svg/safari.svg";
+import dua from "@/assets/dua.png";
 
 const HomePage = () => {
   return (
@@ -47,7 +50,7 @@ const HomePage = () => {
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Hero Section */}
         <section className="my-16">
-          <h1 className="text-4xl md:text-4xl font-bold text-sky-900 mb-6">
+          <h1 className="text-4xl md:text-4xl font-semibold text-sky-900 mb-6">
             An Online Quran Recitation Platform with Nature Sounds
           </h1>
           <p className="text-xl text-gray-700 mb-8">
@@ -60,7 +63,7 @@ const HomePage = () => {
         <section className="mb-16" aria-labelledby="about-heading">
           <h2
             id="about-heading"
-            className="text-3xl font-bold text-sky-900 mb-4"
+            className="text-3xl font-medium text-sky-900 mb-4"
           >
             What is Arehna?
           </h2>
@@ -76,7 +79,7 @@ const HomePage = () => {
         <section className="mb-16" aria-labelledby="unique-heading">
           <h2
             id="unique-heading"
-            className="text-3xl font-bold text-sky-900 mb-4"
+            className="text-3xl font-medium text-sky-900 mb-4"
           >
             What makes Arehna unique?
           </h2>
@@ -93,7 +96,7 @@ const HomePage = () => {
         <section className="mb-16" aria-labelledby="usage-heading">
           <h2
             id="usage-heading"
-            className="text-3xl font-bold text-sky-900 mb-4"
+            className="text-3xl font-medium text-sky-900 mb-4"
           >
             How to Use Arehna for Relaxation and Well-Being
           </h2>
@@ -133,14 +136,14 @@ const HomePage = () => {
         <section className="mb-16" aria-labelledby="features-heading">
           <h2
             id="features-heading"
-            className="text-3xl font-bold text-sky-900 mb-8"
+            className="text-3xl font-medium text-sky-900 mb-8"
           >
             App Features
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="feature-card p-6 bg-white shadow-sm rounded-xl">
               <Headphones className="w-8 h-8 text-sky-600 mb-4" />
-              <h3 className="text-xl font-semibold text-sky-900 mb-2">
+              <h3 className="text-xl font-medium text-sky-900 mb-2">
                 Multiple Recitations
               </h3>
               <p className="text-gray-700">
@@ -149,7 +152,7 @@ const HomePage = () => {
             </div>
             <div className="feature-card p-6 bg-white shadow-sm rounded-xl">
               <Leaf className="w-8 h-8 text-sky-600 mb-4" />
-              <h3 className="text-xl font-semibold text-sky-900 mb-2">
+              <h3 className="text-xl font-medium text-sky-900 mb-2">
                 Natural Sound Library
               </h3>
               <p className="text-gray-700">
@@ -158,7 +161,7 @@ const HomePage = () => {
             </div>
             <div className="feature-card p-6 bg-white shadow-sm rounded-xl">
               <Settings className="w-8 h-8 text-sky-600 mb-4" />
-              <h3 className="text-xl font-semibold text-sky-900 mb-2">
+              <h3 className="text-xl font-medium text-sky-900 mb-2">
                 Audio Mixing
               </h3>
               <p className="text-gray-700">
@@ -167,7 +170,7 @@ const HomePage = () => {
             </div>
             <div className="feature-card p-6 bg-white shadow-sm rounded-xl">
               <Timer className="w-8 h-8 text-sky-600 mb-4" />
-              <h3 className="text-xl font-semibold text-sky-900 mb-2">
+              <h3 className="text-xl font-medium text-sky-900 mb-2">
                 Usage Timer
               </h3>
               <p className="text-gray-700">
@@ -176,7 +179,7 @@ const HomePage = () => {
             </div>
             <div className="feature-card p-6 bg-white shadow-sm rounded-xl">
               <Palette className="w-8 h-8 text-sky-600 mb-4" />
-              <h3 className="text-xl font-semibold text-sky-900 mb-2">
+              <h3 className="text-xl font-medium text-sky-900 mb-2">
                 Personalization Experience
               </h3>
               <p className="text-gray-700">
@@ -185,7 +188,7 @@ const HomePage = () => {
             </div>
             <div className="feature-card p-6 bg-white shadow-sm rounded-xl">
               <Heart className="w-8 h-8 text-sky-600 mb-4" />
-              <h3 className="text-xl font-semibold text-sky-900 mb-2">
+              <h3 className="text-xl font-medium text-sky-900 mb-2">
                 Minimalist Interface
               </h3>
               <p className="text-gray-700">
@@ -199,21 +202,42 @@ const HomePage = () => {
         <section className="download-app text-gray-800">
           <h2
             id="features-heading"
-            className="text-3xl font-bold text-sky-900 mb-8"
+            className="text-3xl font-medium text-sky-900 mb-8"
           >
-            Arehna is Availbale on :
+            Arehna Availbale as :
           </h2>
-          <ul className="pl-6 space-y-4">
-            <li className="text-lg text-gray-700">
-              <span className="font-medium">Chrome Extension: </span>
-              <a href="arehna">Arehna - cLM</a>
+          <ul className="pl-2 space-y-4 w-full">
+            <li className="text-lg text-gray-700 flex items-center gap-2">
+              <span className="font-medium inline-flex items-center gap-2 ">
+                <Image
+                  src={chrome}
+                  alt="Chrome browser icon"
+                  className="size-5"
+                />
+                Chrome Extension:{" "}
+              </span>
+              <a href="#">Arehna - Your Calm Companion</a>
             </li>
-            <li className="text-lg text-gray-700">
-              <span className="font-medium">FireFox Extension: </span>
+            <li className="text-lg text-gray-700 flex items-center gap-2">
+              <span className="font-medium inline-flex items-center gap-2">
+                <Image
+                  src={firefox}
+                  alt="FireFox browser icon"
+                  className="size-5"
+                />
+                FireFox Extension:{" "}
+              </span>
               Coming Soon...
             </li>
-            <li className="text-lg text-gray-700">
-              <span className="font-medium">Safari Extension: </span>
+            <li className="text-lg text-gray-700 flex items-center gap-2">
+              <span className="font-medium inline-flex items-center gap-2 ">
+                <Image
+                  src={safari}
+                  alt="Safari browser icon"
+                  className="size-5"
+                />
+                Safari Extension:{" "}
+              </span>
               Coming Soon...
             </li>
           </ul>
@@ -223,8 +247,19 @@ const HomePage = () => {
       <footer className="py-6 border-t border-emerald-800/40 text-gray-800">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center text-gray-600 border-t border-white/10 pt-8">
-            <p className="mb-2 text-lg">
-              Developed with <span>🤲</span> by{" "}
+            <p className="mb-2 text-lg relative max-w-max mx-auto ">
+              Developed with{" "}
+              <span className="group">
+                <Image
+                  src={dua}
+                  alt="Palms Up Emoji"
+                  className="size-5 inline-block hover:scale-110 hover:rotate-12  transition-transform duration-200"
+                />
+                <span className="bg-zinc-800 text-white px-2 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200  max-w-min rounded-lg text-sm absolute -top-6 right-14">
+                  Dua
+                </span>
+              </span>{" "}
+              by{" "}
               <a
                 href="https://nzar.dev"
                 className="underline underline-offset-4"
