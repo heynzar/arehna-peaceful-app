@@ -15,6 +15,8 @@ import firefox from "@/assets/svg/firefox.svg";
 import safari from "@/assets/svg/safari.svg";
 import dua from "@/assets/dua.png";
 
+import Link from "next/link";
+
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-sky-50">
@@ -49,14 +51,20 @@ const HomePage = () => {
 
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Hero Section */}
-        <section className="my-16">
-          <h1 className="text-4xl md:text-4xl font-semibold text-sky-900 mb-6">
-            An Online Quran Recitation Platform with Nature Sounds
+        <section className="h-screen  flex flex-col  gap-4 justify-center items-center py-4">
+          <h1 className="text-2xl sm:text-4xl text-center md:text-6xl font-semibold text-sky-900 ">
+            Online Quran Recitation Platform with Nature Sounds
           </h1>
-          <p className="text-xl text-gray-700 mb-8">
+          <p className="text-sm sm:text-md w-full max-w-[440px] text-center text-gray-700 ">
             Enhance your well-being through the perfect blend of Quran
             recitations and calming nature sounds.
           </p>
+          <Link
+            href="/"
+            className="mt-8 bg-sky-950 px-14 py-3 text-2xl rounded-xl hover:bg-sky-800 transition-colors duration-200"
+          >
+            Start
+          </Link>
         </section>
 
         {/* What is Arehna Section */}

@@ -57,7 +57,8 @@ const PrivacyPolicy = () => {
         <p className="mb-6">
           Since no user data is collected, there is no data to retain. Any
           settings or preferences are saved locally on your browser and can be
-          cleared at any time by managing your browser's local storage settings.
+          cleared at any time by managing your browser&apos;s local storage
+          settings.
         </p>
 
         <h2 className="text-2xl text-sky-900 font-semibold mb-2">

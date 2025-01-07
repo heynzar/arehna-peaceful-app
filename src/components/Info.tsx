@@ -60,21 +60,14 @@ export default function InfoSection({ open, setOpen }: InfoSectionProps) {
           </div>
           <hr className="mt-4 opacity-20" />
           <footer className="flex my-2 w-full justify-between items-center text-[0.7rem] text-zinc-400">
-            {/* <a
+            <a
               href="#"
               className="flex underline underline-offset-4  items-end hover:text-zinc-100 transition-colors duration-300"
               aria-label="Open Chrome Extension"
             >
               <span>Chrome Extension</span>
               <ArrowUpRight strokeWidth={1} size={16} />
-            </a> */}
-            <Link
-              href="/about"
-              className="underline underline-offset-4  hover:text-zinc-100 transition-colors duration-300"
-            >
-              About Page
-            </Link>
-
+            </a>
             <span>
               Developed by{" "}
               <a
