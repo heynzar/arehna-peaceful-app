@@ -17,7 +17,6 @@ import Time from "@/components/Time";
 import Timer from "@/components/Timer";
 import AudioLine from "@/components/AudioLines";
 import InfoSection from "@/components/Info";
-import HomePage from "@/components/HomePage";
 
 export default function Page() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -123,30 +122,28 @@ export default function Page() {
         className="absolute inset-0 -z-10"
       />
 
-      <div>
-        <main
-          className={`${
-            isAppOpen ? "hidden" : "flex"
-          } flex h-screen  select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
-        >
-          <Time isHijri={settings.isHijri} />
-          <div className="scale-75 mt-2 md:mt-5  md:scale-100">
-            <button
-              onClick={toggleApp}
-              className="key__button "
-              aria-label="Start the application"
-              tabIndex={0}
-            >
-              START
-            </button>
-          </div>
-        </main>
-        <HomePage />
-      </div>
+      <main
+        className={`${
+          isAppOpen ? "hidden" : "flex"
+        } flex h-full select-none flex-col justify-center items-center backdrop-blur-[2px] transition-opacity duration-500`}
+      >
+        <Time isHijri={settings.isHijri} />
+        <div className="scale-75 mt-2 md:mt-5  md:scale-100">
+          <button
+            onClick={toggleApp}
+            className="key__button "
+            aria-label="Start the application"
+            tabIndex={0}
+          >
+            START
+          </button>
+        </div>
+      </main>
+
       <main
         className={`${
           isAppOpen ? "flex" : "hidden"
-        } w-full h-[100dvh] overflow-hidden select-none flex-col gap-4 justify-center items-center py-4 px-8`}
+        } w-full h-[100dvh] select-none flex-col gap-4 justify-center items-center py-4 px-8`}
       >
         <div className="mb-auto" />
         <section className="md:scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
