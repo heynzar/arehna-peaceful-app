@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Headphones,
   Settings,
@@ -7,7 +6,6 @@ import {
   Palette,
   Leaf,
 } from "lucide-react";
-import Head from "next/head";
 import Image from "next/image";
 
 import chrome from "@/assets/svg/chrome.svg";
@@ -20,35 +18,6 @@ import Link from "next/link";
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-sky-50">
-      {/* SEO Metadata */}
-      <Head>
-        <title>
-          Arehna - Experience Divine Quran Recitation with Nature Sounds
-        </title>
-        <meta
-          name="description"
-          content="Enhance your Quran recitation experience with Arehna's unique combination of beautiful tilawat and calming nature sounds. Listen to the Holy Quran online with peace and tranquility."
-        />
-        <meta
-          name="keywords"
-          content="Arehna, al Quran, Quran online, Koran, recitation, Quran recitation, Quran Audio, tilawat Quran, relaxing Quran, calming, relaxing, rain sounds, natural sounds, peaceful"
-        />
-        <meta
-          property="og:title"
-          content="Arehna - Divine Quran Recitation with Nature"
-        />
-        <meta
-          property="og:description"
-          content="Experience the perfect harmony of Quranic recitation and nature sounds."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/arehna-preview.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="canonical" href="https://arehna.com" />
-        <meta name="theme-color" content="#0c4a6e" />
-      </Head>
-
       <main className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Hero Section */}
         <section className="h-screen  flex flex-col  gap-4 justify-center items-center py-4">

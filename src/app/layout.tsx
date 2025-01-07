@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
 import { poppins } from "@/app/font";
 import bg from "@/assets/bg.jpeg";
 
 import "./globals.css";
-export const metadata: Metadata = {
-  title: "Arehna Peaceful App",
-  description:
-    "Arehna - A relaxing and peaceful web app designed to help users unwind, find calm, and enhance their well-being.",
-};
 
 export default function RootLayout({
   children,
@@ -17,11 +11,39 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>Arehna - Your Calm Companion</title>
+        <meta
+          name="description"
+          content="A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm."
+        />
+        <meta
+          name="keywords"
+          content="Arehna, calm app, relaxation, Quran recitation, natural sounds, mindfulness, Islamic app, Arehna, al Quran, Quran online, Koran, recitation, Quran Audio, tilawat Quran, relaxing Quran, calming, relaxing, rain sounds, peaceful"
+        />
+        <meta name="author" content="nzar.dev" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="Arehna - Your Calm Companion" />
+        <meta
+          property="og:description"
+          content="A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm."
+        />
+        <meta property="og:image" content="/cover.png" />
+        <meta property="og:url" content="https://your-app-domain.com" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Arehna - Your Calm Companion" />
+        <meta
+          name="twitter:description"
+          content="A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm."
+        />
+        <meta name="twitter:image" content="/cover.png" />
+        <link rel="canonical" href="https://arehna.nzar.dev" />
         <meta
           name="google-site-verification"
           content="1gdzJ54Nkkts333q1oMVKv-c54NiQV0cSRV7rPny3Ow"
         />
       </head>
+      <meta name="theme-color" content="#09090b" />
       <body
         className={`${poppins.className} antialiased h-screen w-screen overflow-x-hidden relative`}
       >
