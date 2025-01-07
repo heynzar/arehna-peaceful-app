@@ -40,7 +40,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://arehna.nzar.dev" />
         <meta
           name="google-site-verification"
-          content="1gdzJ54Nkkts333q1oMVKv-c54NiQV0cSRV7rPny3Ow"
+          content="GVMliRgOaC5BVnMhXqDy1r-RIP0utMUGGkf38orLpNo"
         />
       </head>
       <meta name="theme-color" content="#09090b" />

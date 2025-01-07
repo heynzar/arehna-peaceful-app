@@ -3,7 +3,6 @@
 import { ArrowUpRight, X } from "lucide-react";
 import { SetStateAction } from "react";
 import { ruqaa } from "@/app/font";
-import Link from "next/link";
 
 interface InfoSectionProps {
   open: boolean;
