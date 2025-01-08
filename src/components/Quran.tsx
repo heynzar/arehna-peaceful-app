@@ -3,7 +3,8 @@
 import { RotateCcw, Volume2, VolumeOff, X } from "lucide-react";
 import { ruqaa } from "@/app/font";
 import { SetStateAction, useState, useRef, useEffect } from "react";
-import { quran } from "@/lib/data";
+import { quran, quranList, reciterList } from "@/lib/data";
+import Dropdown from "./Dropdown";
 
 export default function Quran({
   open,
@@ -117,9 +118,11 @@ export default function Quran({
     }
   }, [play]);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const options = Array(20).fill("Option");
   return (
     <section
-      className={`${ruqaa.className} ${
+      className={`${
         open ? "flex" : "hidden"
       } justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6`}
       aria-hidden={!open}
@@ -130,9 +133,9 @@ export default function Quran({
         aria-labelledby="quran-title"
         aria-describedby="quran-description"
       >
-        <h1 id="quran-title" className="sr-only">
+        <h2 id="quran-title" className="sr-only">
           Quran Player
-        </h1>
+        </h2>
         <p id="quran-description" className="sr-only">
           Play and manage the recitation of Quranic surahs.
         </p>
@@ -166,16 +169,23 @@ export default function Quran({
           </button>
         </div>
 
+        <div className="flex justify-between gap-2 my-4 items-center">
+          <Dropdown title="Select A Surah" list={quranList} />
+          <Dropdown title="Select A Reciter" list={reciterList} />
+        </div>
+
         <div
           dir="rtl"
           id="quran"
-          className="flex flex-wrap gap-2 justify-center items-center mt-4"
+          className="flex flex-wrap gap-2 justify-center items-center"
           role="list"
         >
           {quran.map(({ name, src }) => (
             <div
               key={name}
-              className={`md:h-10 w-[48%] min-w-max md:w-[32%] transition-colors border border-zinc-800 duration-300 flex items-center justify-end px-1 rounded-lg ${
+              className={`${
+                ruqaa.className
+              } md:h-10 w-[48%] min-w-max md:w-[32%] transition-colors border border-zinc-800 duration-300 flex items-center justify-end px-1 rounded-lg ${
                 currentPlaying === src
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"
