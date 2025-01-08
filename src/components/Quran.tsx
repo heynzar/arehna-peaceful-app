@@ -3,8 +3,9 @@
 import { RotateCcw, Volume2, VolumeOff, X } from "lucide-react";
 import { ruqaa } from "@/app/font";
 import { SetStateAction, useState, useRef, useEffect } from "react";
-import { quran, quranList, reciterList } from "@/lib/data";
-import Dropdown from "./Dropdown";
+import { quran } from "@/lib/data";
+// import { quranList, reciterList } from "@/lib/data";
+// import Dropdown from "./Dropdown";
 
 export default function Quran({
   open,
@@ -12,11 +13,23 @@ export default function Quran({
   play,
   openApp,
   selectedSurah,
-}: {
+}: // selectQuran,
+// setSelectQuran,
+{
   play: boolean;
   open: boolean;
   openApp: boolean;
   selectedSurah: number;
+  // selectQuran: {
+  //   selectedSurah: string;
+  //   selectedReciter: string;
+  // };
+  // setSelectQuran: (
+  //   value: SetStateAction<{
+  //     selectedSurah: string;
+  //     selectedReciter: string;
+  //   }>
+  // ) => void;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
@@ -118,8 +131,6 @@ export default function Quran({
     }
   }, [play]);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const options = Array(20).fill("Option");
   return (
     <section
       className={`${
@@ -168,16 +179,28 @@ export default function Quran({
             <X className="hover:text-white/80" />
           </button>
         </div>
-
-        <div className="flex justify-between gap-2 my-4 items-center">
-          <Dropdown title="Select A Surah" list={quranList} />
-          <Dropdown title="Select A Reciter" list={reciterList} />
-        </div>
-
+        {/* <div className="flex justify-between gap-2 my-4 items-center">
+          <Dropdown
+            title="Select A Surah"
+            list={quranList}
+            setSelectQuran={setSelectQuran}
+            selectQuran={selectQuran}
+            type="quran"
+            toggleAudio={toggleAudio}
+          />
+          <Dropdown
+            title="Select A Reciter"
+            list={reciterList}
+            setSelectQuran={setSelectQuran}
+            selectQuran={selectQuran}
+            type="reciter"
+            toggleAudio={toggleAudio}
+          />
+        </div> */}
         <div
           dir="rtl"
           id="quran"
-          className="flex flex-wrap gap-2 justify-center items-center"
+          className="mt-4 flex flex-wrap gap-2 justify-center items-center"
           role="list"
         >
           {quran.map(({ name, src }) => (

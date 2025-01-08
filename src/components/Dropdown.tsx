@@ -1,19 +1,35 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, SetStateAction } from "react";
 import { ruqaa } from "@/app/font";
 
 export default function Dropdown({
   title,
   list,
+  type,
+  selectQuran,
+  setSelectQuran,
+  toggleAudio,
 }: {
   title: string;
+  type: "quran" | "reciter";
+  toggleAudio: (src: string) => void;
   list: {
     name_ar: string;
     name_en: string;
     query: string;
   }[];
+  selectQuran: {
+    selectedSurah: string;
+    selectedReciter: string;
+  };
+  setSelectQuran: (
+    value: SetStateAction<{
+      selectedSurah: string;
+      selectedReciter: string;
+    }>
+  ) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [_title, setTitle] = useState(title);
@@ -26,7 +42,7 @@ export default function Dropdown({
   const filteredOptions = options.filter((option) =>
     option.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  console.log(options);
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -94,11 +110,28 @@ export default function Dropdown({
               filteredOptions.map((option, index) => (
                 <li
                   key={index}
-                  className={`${ruqaa.className}  px-2 py-2 hover:bg-zinc-800 cursor-pointer text-sm`}
+                  className={`${ruqaa.className} ${
+                    option === _title
+                      ? "bg-sky-500 hover:bg-sky-400"
+                      : "hover:bg-zinc-800"
+                  }  px-2 py-2  cursor-pointer text-sm`}
                   onClick={() => {
                     setTitle(option);
-
                     setIsOpen(false);
+                    if (type === "quran") {
+                      setSelectQuran((prevState) => ({
+                        ...prevState,
+                        selectedSurah: list[index].query,
+                      }));
+                    } else {
+                      setSelectQuran((prevState) => ({
+                        ...prevState,
+                        selectedReciter: list[index].query,
+                      }));
+                    }
+                    toggleAudio(
+                      `${selectQuran.selectedReciter}/${selectQuran.selectedSurah}.mp3`
+                    );
                   }}
                 >
                   {option}

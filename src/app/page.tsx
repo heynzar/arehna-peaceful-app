@@ -27,6 +27,11 @@ export default function Page() {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
+  // const [selectQuran, setSelectQuran] = useState({
+  //   selectedSurah: "002",
+  //   selectedReciter: "https://server6.mp3quran.net/qtm",
+  // });
+
   const [settings, setSettings] = useState({
     isHijri: false,
     selectedSurah: 0,
@@ -149,7 +154,6 @@ export default function Page() {
         <section className="md:scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
           <Time isHijri={settings.isHijri} />
         </section>
-
         <section
           id="control-buttons"
           className="md:scale-125 md:mt-8 flex items-center w-full max-w-[400px] gap-2 "
@@ -184,7 +188,6 @@ export default function Page() {
             </button>
           </div>
         </section>
-
         <div className="w-full flex justify-between items-center mt-auto">
           <button
             onClick={() => setIsInfoOpen(true)}
@@ -238,6 +241,8 @@ export default function Page() {
           play={isPlaying}
           openApp={isAppOpen}
           selectedSurah={settings.selectedSurah}
+          // selectQuran={selectQuran}
+          // setSelectQuran={setSelectQuran}
         />
         <Settings
           open={isSettingsOpen}

@@ -11,17 +11,6 @@ import {
   Wind,
 } from "lucide-react";
 
-// export const quran = [
-//   {
-//     name: "إن المتقين في مقام أمين",
-//     src: "/ding.mp3",
-//   },
-//   {
-//     name: "ولمن خاف مقام ربه جنتان",
-//     src: "/ding.mp3",
-//   },
-// ];
-
 export const quran = [
   {
     name: "سورة البقرة",
@@ -35,28 +24,28 @@ export const quran = [
     name: "سورة يوسف",
     src: "https://server6.mp3quran.net/qtm/012.mp3",
   },
-  // {
-  //   name: "سورة النساء",
-  //   src: "https://server6.mp3quran.net/qtm/004.mp3",
-  // },
+  {
+    name: "سورة النساء",
+    src: "https://server6.mp3quran.net/qtm/004.mp3",
+  },
   {
     name: "سورة الكهف",
     src: "https://server6.mp3quran.net/qtm/018.mp3",
   },
-  // {
-  //   name: "سورة الصافات",
-  //   src: "https://server6.mp3quran.net/qtm/037.mp3",
-  // },
+  {
+    name: "سورة الصافات",
+    src: "https://server6.mp3quran.net/qtm/037.mp3",
+  },
   {
     name: "سورة الرحمن",
     src: "https://server6.mp3quran.net/qtm/055.mp3",
   },
-  // {
-  //   name: "سورة  الواقعة",
-  //   src: "https://server6.mp3quran.net/qtm/056.mp3",
-  // },
   {
-    name: "سورة  يس",
+    name: "سورة الواقعة",
+    src: "https://server6.mp3quran.net/qtm/056.mp3",
+  },
+  {
+    name: "سورة يس",
     src: "https://server6.mp3quran.net/qtm/036.mp3",
   },
 ];
@@ -105,31 +94,71 @@ export const sounds = [
 ];
 
 export const reciterList = [
-  { name_ar: "ناصر القطامي", name_en: "Nasser Alqatami", query: "qtm" },
-  { name_ar: "هزاع البلوشي", name_en: "Hazza Al-Balushi", query: "hazza" },
-  { name_ar: "فارس عباد", name_en: "Fares Abbad", query: "frs_a" },
-  { name_ar: "ياسر الدوسري", name_en: "Yasser Al-Dosari", query: "yasser" },
-  { name_ar: "مشاري راشد العفاسي", name_en: "Mishary Alafasi", query: "afs" },
-  { name_ar: "محمد أيوب", name_en: "Mohammed Ayyub", query: "ayyub" },
+  {
+    name_ar: "ناصر القطامي",
+    name_en: "Nasser Alqatami",
+    query: "https://server6.mp3quran.net/qtm",
+  },
+  {
+    name_ar: "هزاع البلوشي",
+    name_en: "Hazza Al-Balushi",
+    query: "https://server11.mp3quran.net/hazza",
+  },
+  {
+    name_ar: "فارس عباد",
+    name_en: "Fares Abbad",
+    query: "https://server8.mp3quran.net/frs_a",
+  },
+  {
+    name_ar: "ياسر الدوسري",
+    name_en: "Yasser Al-Dosari",
+    query: "https://server11.mp3quran.net/yasser",
+  },
+  {
+    name_ar: "مشاري راشد العفاسي",
+    name_en: "Mishary Alafasi",
+    query: "https://server8.mp3quran.net/afs",
+  },
+  {
+    name_ar: "محمد أيوب",
+    name_en: "Mohammed Ayyub",
+    query: "https://server8.mp3quran.net/ayyub",
+  },
   {
     name_ar: "عبد الباسط عبد الصمد",
     name_en: "Abdulbasit Abdulsamad",
-    query: "basit_mjwd",
+    query: "https://server7.mp3quran.net/basit/Almusshaf-Al-Mojawwad",
   },
   {
     name_ar: "محمد صديق المنشاوي",
     name_en: "Mohammed Siddiq Al-Minshawi",
-    query: "minsh",
+    query: "https://server10.mp3quran.net/minsh",
   },
   {
     name_ar: "عبد الرحمن العوسي",
     name_en: "Abdulrahman Aloosi",
-    query: "aloosi",
+    query: "https://server6.mp3quran.net/aloosi",
   },
-  { name_ar: "محمد اللحيدان", name_en: "Mohammed Al-Lohaidan", query: "lhdan" },
-  { name_ar: "ماهر المعيقلي", name_en: "Maher Al Meaqli", query: "maher" },
-  { name_ar: "منصور السالمي", name_en: "Mansour Al-Salemi", query: "mansor" },
-  { name_ar: "أحمد النفيس", name_en: "Ahmad Al Nufais", query: "nufais" },
+  {
+    name_ar: "محمد اللحيدان",
+    name_en: "Mohammed Al-Lohaidan",
+    query: "https://server8.mp3quran.net/lhdan",
+  },
+  {
+    name_ar: "ماهر المعيقلي",
+    name_en: "Maher Al Meaqli",
+    query: "https://server12.mp3quran.net/maher",
+  },
+  {
+    name_ar: "منصور السالمي",
+    name_en: "Mansour Al-Salemi",
+    query: "https://server14.mp3quran.net/mansor",
+  },
+  {
+    name_ar: "أحمد النفيس",
+    name_en: "Ahmad Al Nufais",
+    query: "https://server16.mp3quran.net/nufais/Rewayat-Hafs-A-n-Assem",
+  },
 ];
 
 export const quranList = [
