@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import bg from "@/assets/bg.jpeg";
+import bg from "@/assets/bg.jpg";
 import {
   Info,
   Keyboard as KeyboardIcon,

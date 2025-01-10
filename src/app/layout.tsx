@@ -1,7 +1,63 @@
 import { poppins } from "@/app/font";
-import bg from "@/assets/bg.jpeg";
+import bg from "@/assets/bg.jpg";
+import { Metadata } from "next";
 
 import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Arehna - Your Calm Companion",
+  description:
+    "A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm.",
+  authors: [{ name: "nzar.dev" }],
+  keywords: [
+    "Arehna",
+    "calm app",
+    "relaxation",
+    "Quran recitation",
+    "natural sounds",
+    "mindfulness",
+    "Islamic app",
+    "al Quran",
+    "Quran online",
+    "Koran",
+    "recitation",
+    "Quran Audio",
+    "tilawat Quran",
+    "relaxing Quran",
+    "calming",
+    "relaxing",
+    "rain sounds",
+    "peaceful",
+  ],
+  openGraph: {
+    title: "Arehna - Your Calm Companion",
+    description:
+      "A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm.",
+    url: "https://arehna.org",
+    siteName: "Arehna",
+    images: [
+      {
+        url: "/cover.png",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arehna - Your Calm Companion",
+    description:
+      "A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm.",
+    images: ["/cover.png"],
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+  themeColor: "#09090b",
+  alternates: {
+    canonical: "https://arehna.org",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -11,39 +67,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Arehna - Your Calm Companion</title>
-        <meta
-          name="description"
-          content="A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm."
-        />
-        <meta
-          name="keywords"
-          content="Arehna, calm app, relaxation, Quran recitation, natural sounds, mindfulness, Islamic app, Arehna, al Quran, Quran online, Koran, recitation, Quran Audio, tilawat Quran, relaxing Quran, calming, relaxing, rain sounds, peaceful"
-        />
-        <meta name="author" content="nzar.dev" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content="Arehna - Your Calm Companion" />
-        <meta
-          property="og:description"
-          content="A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm."
-        />
-        <meta property="og:image" content="/cover.png" />
-        <meta property="og:url" content="https://your-app-domain.com" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Arehna - Your Calm Companion" />
-        <meta
-          name="twitter:description"
-          content="A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm."
-        />
-        <meta name="twitter:image" content="/cover.png" />
-        <link rel="canonical" href="https://arehna.nzar.dev" />
         <meta
           name="google-site-verification"
-          content="GVMliRgOaC5BVnMhXqDy1r-RIP0utMUGGkf38orLpNo"
+          content="RLlamPjG0TyaAmgW-qkvzSVXJMw_g6S3sDuEWUwnvCo"
         />
       </head>
-      <meta name="theme-color" content="#09090b" />
       <body
         className={`${poppins.className} antialiased h-screen w-screen overflow-x-hidden relative`}
       >
