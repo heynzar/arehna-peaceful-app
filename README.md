@@ -4,9 +4,9 @@
 
 A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm.
 
-🚀 **[Live Demo Here](https://arehna.nzar.dev/)**
+🚀 **[Live Demo Here](https://arehna.org/)**
 
-[![Project Preview](/public/cover.png)](https://arehna.nzar.dev/)
+[![Project Preview](/public/cover.png)](https://arehna.org/)
 
 ---
 

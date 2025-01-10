@@ -45,7 +45,7 @@ export default function InfoSection({ open, setOpen }: InfoSectionProps) {
 
           <div className="flex justify-between items-center mt-2 w-full">
             <a
-              href="https://ko-fi.com/heynzar"
+              href="https://ko-fi.com/arehna"
               target="_blank"
               className="scale-75 -ml-6"
             >
@@ -60,7 +60,8 @@ export default function InfoSection({ open, setOpen }: InfoSectionProps) {
           <hr className="mt-4 opacity-20" />
           <footer className="flex my-2 w-full justify-between items-center text-[0.7rem] text-zinc-400">
             <a
-              href="#"
+              target="_blank"
+              href="https://chromewebstore.google.com/detail/arehna-your-calm-companio/abemfldnneppbhlenhhogndkekgbmeon"
               className="flex underline underline-offset-4  items-end hover:text-zinc-100 transition-colors duration-300"
               aria-label="Open Chrome Extension"
             >
