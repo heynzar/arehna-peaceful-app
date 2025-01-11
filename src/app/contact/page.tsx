@@ -1,5 +1,3 @@
-import { Instagram, Twitter } from "lucide-react";
-
 const Contact: React.FC = () => {
   return (
     <main className="h-screen w-screen flex justify-center items-center p-4">

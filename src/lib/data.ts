@@ -14,39 +14,39 @@ import {
 export const quran = [
   {
     name: "سورة البقرة",
-    src: "https://server6.mp3quran.net/qtm/002.mp3",
+    src: "002",
   },
   {
     name: "سورة الملك",
-    src: "https://server6.mp3quran.net/qtm/067.mp3",
+    src: "067",
   },
   {
     name: "سورة يوسف",
-    src: "https://server6.mp3quran.net/qtm/012.mp3",
+    src: "012",
   },
-  {
-    name: "سورة النساء",
-    src: "https://server6.mp3quran.net/qtm/004.mp3",
-  },
+  // {
+  //   name: "سورة النساء",
+  //   src: "004",
+  // },
   {
     name: "سورة الكهف",
-    src: "https://server6.mp3quran.net/qtm/018.mp3",
+    src: "018",
   },
-  {
-    name: "سورة الصافات",
-    src: "https://server6.mp3quran.net/qtm/037.mp3",
-  },
+  // {
+  //   name: "سورة الصافات",
+  //   src: "037",
+  // },
   {
     name: "سورة الرحمن",
-    src: "https://server6.mp3quran.net/qtm/055.mp3",
+    src: "055",
   },
-  {
-    name: "سورة الواقعة",
-    src: "https://server6.mp3quran.net/qtm/056.mp3",
-  },
+  // {
+  //   name: "سورة الواقعة",
+  //   src: "056",
+  // },
   {
     name: "سورة يس",
-    src: "https://server6.mp3quran.net/qtm/036.mp3",
+    src: "036",
   },
 ];
 
@@ -100,29 +100,29 @@ export const reciterList = [
     query: "https://server6.mp3quran.net/qtm",
   },
   {
-    name_ar: "هزاع البلوشي",
-    name_en: "Hazza Al-Balushi",
-    query: "https://server11.mp3quran.net/hazza",
-  },
-  {
-    name_ar: "فارس عباد",
-    name_en: "Fares Abbad",
-    query: "https://server8.mp3quran.net/frs_a",
-  },
-  {
     name_ar: "ياسر الدوسري",
     name_en: "Yasser Al-Dosari",
     query: "https://server11.mp3quran.net/yasser",
+  },
+  {
+    name_ar: "عبد الرحمن العوسي",
+    name_en: "Abdulrahman Aloosi",
+    query: "https://server6.mp3quran.net/aloosi",
   },
   {
     name_ar: "مشاري راشد العفاسي",
     name_en: "Mishary Alafasi",
     query: "https://server8.mp3quran.net/afs",
   },
+  // {
+  //   name_ar: "هزاع البلوشي",
+  //   name_en: "Hazza Al-Balushi",
+  //   query: "https://server11.mp3quran.net/hazza",
+  // },
   {
-    name_ar: "محمد أيوب",
-    name_en: "Mohammed Ayyub",
-    query: "https://server8.mp3quran.net/ayyub",
+    name_ar: "فارس عباد",
+    name_en: "Fares Abbad",
+    query: "https://server8.mp3quran.net/frs_a",
   },
   {
     name_ar: "عبد الباسط عبد الصمد",
@@ -135,9 +135,9 @@ export const reciterList = [
     query: "https://server10.mp3quran.net/minsh",
   },
   {
-    name_ar: "عبد الرحمن العوسي",
-    name_en: "Abdulrahman Aloosi",
-    query: "https://server6.mp3quran.net/aloosi",
+    name_ar: "محمد أيوب",
+    name_en: "Mohammed Ayyub",
+    query: "https://server8.mp3quran.net/ayyub",
   },
   {
     name_ar: "محمد اللحيدان",
