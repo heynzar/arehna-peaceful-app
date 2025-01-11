@@ -27,10 +27,10 @@ export default function Page() {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
-  // const [selectQuran, setSelectQuran] = useState({
-  //   selectedSurah: "002",
-  //   selectedReciter: "https://server6.mp3quran.net/qtm",
-  // });
+  const [selectQuran, setSelectQuran] = useState({
+    selectedSurah: "002",
+    selectedReciter: "https://server6.mp3quran.net/qtm",
+  });
 
   const [settings, setSettings] = useState({
     isHijri: false,
@@ -241,8 +241,8 @@ export default function Page() {
           play={isPlaying}
           openApp={isAppOpen}
           selectedSurah={settings.selectedSurah}
-          // selectQuran={selectQuran}
-          // setSelectQuran={setSelectQuran}
+          selectQuran={selectQuran}
+          setSelectQuran={setSelectQuran}
         />
         <Settings
           open={isSettingsOpen}
