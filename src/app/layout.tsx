@@ -49,11 +49,6 @@ export const metadata: Metadata = {
       "A peaceful web app that combines natural sounds with beautiful Quran recitations to help you find moments of calm.",
     images: ["/cover.png"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
-  themeColor: "#09090b",
   alternates: {
     canonical: "https://arehna.org",
   },
@@ -67,6 +62,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="theme-color" content="#09090b" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="google-site-verification"
           content="RLlamPjG0TyaAmgW-qkvzSVXJMw_g6S3sDuEWUwnvCo"
