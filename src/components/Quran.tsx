@@ -2,7 +2,7 @@
 
 import { Loader2, RotateCcw, Volume2, VolumeOff, X } from "lucide-react";
 import { ruqaa } from "@/app/font";
-import { SetStateAction, useState, useRef, useEffect, Dispatch } from "react";
+import { SetStateAction, useState, useRef, useEffect } from "react";
 import { quran } from "@/lib/data";
 import { quranList, reciterList } from "@/lib/data";
 import DropdownQuran from "./DropdownQuran";
@@ -14,7 +14,6 @@ export default function Quran({
   play,
   openApp,
   settings,
-  setSettings,
 }: {
   play: boolean;
   open: boolean;
@@ -25,14 +24,6 @@ export default function Quran({
     selectedReciter: string;
     bg: string;
   };
-  setSettings: Dispatch<
-    SetStateAction<{
-      isHijri: boolean;
-      selectedSurah: string;
-      selectedReciter: string;
-      bg: string;
-    }>
-  >;
   setOpen: (value: SetStateAction<boolean>) => void;
 }) {
   const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({});
@@ -47,6 +38,8 @@ export default function Quran({
   const [muted, setMuted] = useState<boolean>(false);
   const [initialized, setInitialized] = useState<boolean>(false);
   const [loadError, setLoadError] = useState<{ [key: string]: string }>({});
+
+  const [selecedOption, setSelecedOption] = useState(settings);
 
   const initAudio = (src: string) => {
     if (!audioRefs.current[src]) {
@@ -225,14 +218,16 @@ export default function Quran({
         <div className="flex justify-between gap-2 my-4 items-center">
           <DropdownQuran
             list={quranList}
-            settings={settings}
             toggleAudio={toggleAudio}
             restartAudio={restartAudio}
             loadingStates={loadingStates}
+            selecedOption={selecedOption}
+            setSelecedOption={setSelecedOption}
           />
           <DropdownReciter
             list={reciterList}
-            settings={settings}
+            selecedOption={selecedOption}
+            setSelecedOption={setSelecedOption}
             toggleAudio={toggleAudio}
             loadingStates={loadingStates}
           />
@@ -250,37 +245,46 @@ export default function Quran({
               className={`${
                 ruqaa.className
               } md:h-10 w-[48%] min-w-max md:w-[32%] transition-colors border border-zinc-800 duration-300 flex items-center justify-end px-1 rounded-lg ${
-                currentPlaying === `${settings.selectedReciter}/${src}.mp3`
+                currentPlaying === `${selecedOption.selectedReciter}/${src}.mp3`
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"
               } ${
-                loadError[`${settings.selectedReciter}/${src}.mp3`]
+                loadError[`${selecedOption.selectedReciter}/${src}.mp3`]
                   ? "border-red-500"
                   : ""
               }`}
               role="listitem"
             >
               <button
-                onClick={() =>
-                  toggleAudio(`${settings.selectedReciter}/${src}.mp3`)
-                }
+                onClick={() => {
+                  toggleAudio(`${selecedOption.selectedReciter}/${src}.mp3`);
+                  setSelecedOption((prevState) => ({
+                    ...prevState,
+                    selectedSurah: src,
+                  }));
+                }}
                 disabled={
-                  loadingStates[`${settings.selectedReciter}/${src}.mp3`]
+                  loadingStates[`${selecedOption.selectedReciter}/${src}.mp3`]
                 }
                 aria-label={
-                  currentPlaying === `${settings.selectedReciter}/${src}.mp3`
+                  currentPlaying ===
+                  `${selecedOption.selectedReciter}/${src}.mp3`
                     ? `Pause ${name}`
                     : `Play ${name}`
                 }
                 className="w-full h-10 rounded-lg relative"
               >
-                {loadingStates[`${settings.selectedReciter}/${src}.mp3`] ? (
+                {loadingStates[
+                  `${selecedOption.selectedReciter}/${src}.mp3`
+                ] ? (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <Loader2 className="animate-spin h-5 w-5" />
                   </div>
                 ) : (
                   <span className="text-center">
-                    {loadError[`${settings.selectedReciter}/${src}.mp3`] ? (
+                    {loadError[
+                      `${selecedOption.selectedReciter}/${src}.mp3`
+                    ] ? (
                       <span className="text-red-500 text-sm">Error</span>
                     ) : (
                       name
@@ -291,16 +295,16 @@ export default function Quran({
 
               <button
                 onClick={() =>
-                  restartAudio(`${settings.selectedReciter}/${src}.mp3`)
+                  restartAudio(`${selecedOption.selectedReciter}/${src}.mp3`)
                 }
                 disabled={
-                  loadingStates[`${settings.selectedReciter}/${src}.mp3`]
+                  loadingStates[`${selecedOption.selectedReciter}/${src}.mp3`]
                 }
                 className={`${
-                  loadingStates[`${settings.selectedReciter}/${src}.mp3`]
+                  loadingStates[`${selecedOption.selectedReciter}/${src}.mp3`]
                     ? "hidden"
                     : currentPlaying ===
-                      `${settings.selectedReciter}/${src}.mp3`
+                      `${selecedOption.selectedReciter}/${src}.mp3`
                     ? "hover:bg-sky-300"
                     : "hover:bg-zinc-700"
                 } p-2 rounded-md transition-colors`}

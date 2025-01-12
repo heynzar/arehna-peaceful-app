@@ -1,14 +1,15 @@
 "use client";
 
 import { ChevronDown, Loader2 } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { ruqaa } from "@/app/font";
 
 export default function DropdownReciter({
   list,
-  settings,
   toggleAudio,
   loadingStates,
+  selecedOption,
+  setSelecedOption,
 }: {
   toggleAudio: (src: string) => void;
   list: {
@@ -16,17 +17,24 @@ export default function DropdownReciter({
     name_en: string;
     query: string;
   }[];
-  settings: {
+  selecedOption: {
     isHijri: boolean;
     selectedSurah: string;
     selectedReciter: string;
     bg: string;
   };
+  setSelecedOption: Dispatch<
+    SetStateAction<{
+      isHijri: boolean;
+      selectedSurah: string;
+      selectedReciter: string;
+      bg: string;
+    }>
+  >;
   loadingStates: { [key: string]: boolean };
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selecedOption, setSelecedOption] = useState(settings);
 
   function findIndexOfStringInObjectList(
     list: {
@@ -117,13 +125,7 @@ export default function DropdownReciter({
         disabled={isCurrentlyLoading}
       >
         <span className={`${ruqaa.className} flex items-center gap-2`}>
-          {isCurrentlyLoading ? (
-            <>
-              <Loader2 className="animate-spin h-4 w-4" />
-            </>
-          ) : (
-            list[reciterIndex].name_ar
-          )}
+          {list[reciterIndex].name_ar}
         </span>
         <ChevronDown className={isCurrentlyLoading ? "opacity-50" : ""} />
       </button>
@@ -153,7 +155,7 @@ export default function DropdownReciter({
                   <li
                     key={index}
                     className={`${ruqaa.className} ${
-                      isOptionLoading ? "bg-sky-500" : "hover:bg-zinc-800"
+                      isSelected ? "bg-sky-500" : "hover:bg-zinc-800"
                     } px-2 py-2 cursor-pointer text-sm flex items-center justify-between transition-colors duration-200`}
                     onClick={() =>
                       !isOptionLoading && handleReciterSelect(index)

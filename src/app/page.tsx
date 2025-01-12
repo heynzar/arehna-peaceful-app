@@ -237,7 +237,6 @@ export default function Page() {
           play={isPlaying}
           openApp={isAppOpen}
           settings={settings}
-          setSettings={setSettings}
         />
         <Settings
           open={isSettingsOpen}

@@ -54,7 +54,7 @@ export default function Dropdown({
         return i;
       }
     }
-    return -1;
+    return 0;
   }
 
   const i = findIndexOfStringInObjectList(

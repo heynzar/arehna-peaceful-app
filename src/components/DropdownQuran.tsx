@@ -1,16 +1,23 @@
 "use client";
 
 import { ChevronDown, Loader2, RotateCcw } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { ruqaa } from "@/app/font";
 
 export default function DropdownQuran({
   list,
-  settings,
   toggleAudio,
   restartAudio,
   loadingStates,
+  selecedOption,
+  setSelecedOption,
 }: {
+  selecedOption: {
+    isHijri: boolean;
+    selectedSurah: string;
+    selectedReciter: string;
+    bg: string;
+  };
   toggleAudio: (src: string) => void;
   restartAudio: (src: string) => void;
   list: {
@@ -18,17 +25,19 @@ export default function DropdownQuran({
     name_en: string;
     query: string;
   }[];
-  settings: {
-    isHijri: boolean;
-    selectedSurah: string;
-    selectedReciter: string;
-    bg: string;
-  };
+
   loadingStates: { [key: string]: boolean };
+  setSelecedOption: Dispatch<
+    SetStateAction<{
+      isHijri: boolean;
+      selectedSurah: string;
+      selectedReciter: string;
+      bg: string;
+    }>
+  >;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selecedOption, setSelecedOption] = useState(settings);
 
   function findIndexOfStringInObjectList(
     list: {
@@ -39,16 +48,15 @@ export default function DropdownQuran({
     stringToFind: string
   ): number {
     for (let i = 0; i < list.length; i++) {
-      const item = list[i];
       if (
-        item.name_ar === stringToFind ||
-        item.name_en === stringToFind ||
-        item.query === stringToFind
+        list[i].name_ar === stringToFind ||
+        list[i].name_en === stringToFind ||
+        list[i].query === stringToFind
       ) {
         return i;
       }
     }
-    return -1;
+    return 0;
   }
 
   const surahIndex = findIndexOfStringInObjectList(
@@ -71,11 +79,12 @@ export default function DropdownQuran({
   const handleOptionSelect = (index: number) => {
     const newSurah = list[index].query;
     const newAudioSrc = `${selecedOption.selectedReciter}/${newSurah}.mp3`;
-
+    // console.log("from click", list[index].name_ar);
     setSelecedOption((prevState) => ({
       ...prevState,
       selectedSurah: newSurah,
     }));
+    // setTitle(list[index].name_ar);
 
     toggleAudio(newAudioSrc);
     setIsOpen(false);
