@@ -5,8 +5,9 @@ import bg1 from "@/assets/bg.jpg";
 import bg3 from "@/assets/bg3.gif";
 import { Dispatch, SetStateAction } from "react";
 import { X } from "lucide-react";
-import { quran } from "@/lib/data";
+import { quran, quranList, reciterList } from "@/lib/data";
 import { ruqaa } from "@/app/font";
+import Dropdown from "./Dropdown";
 
 export default function Settings({
   open,
@@ -17,14 +18,16 @@ export default function Settings({
   open: boolean;
   settings: {
     isHijri: boolean;
-    selectedSurah: number;
+    selectedSurah: string;
+    selectedReciter: string;
     bg: string;
   };
   setOpen: Dispatch<SetStateAction<boolean>>;
   setSettings: Dispatch<
     SetStateAction<{
       isHijri: boolean;
-      selectedSurah: number;
+      selectedSurah: string;
+      selectedReciter: string;
       bg: string;
     }>
   >;
@@ -47,7 +50,7 @@ export default function Settings({
 
   const handleSurahChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(event.target.value, 10);
-    setSettings((prev) => ({ ...prev, selectedSurah: value }));
+    // setSettings((prev) => ({ ...prev, selectedSurah: value }));
   };
 
   if (!open) return null;
@@ -134,7 +137,14 @@ export default function Settings({
               <span className="text-lg md:text-sm opacity-80">
                 Select the Default Surah
               </span>
-              <select
+              <Dropdown
+                list={quranList}
+                search
+                settings={settings}
+                setSettings={setSettings}
+                type="quran"
+              />
+              {/* <select
                 id="select-surah"
                 onChange={handleSurahChange}
                 dir="rtl"
@@ -146,7 +156,24 @@ export default function Settings({
                     {name}
                   </option>
                 ))}
-              </select>
+              </select> */}
+            </label>
+          </div>
+
+          <div className="mb-2">
+            <label
+              htmlFor="select-surah"
+              className="flex justify-between items-center"
+            >
+              <span className="text-lg md:text-sm opacity-80">
+                Select the Default Reciter
+              </span>
+              <Dropdown
+                list={reciterList}
+                settings={settings}
+                setSettings={setSettings}
+                type="reciter"
+              />
             </label>
           </div>
         </div>

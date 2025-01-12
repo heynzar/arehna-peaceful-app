@@ -1,13 +1,12 @@
 "use client";
 
 import { ChevronDown, Loader2, RotateCcw } from "lucide-react";
-import { useState, useEffect, useRef, SetStateAction } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ruqaa } from "@/app/font";
 
 export default function DropdownQuran({
   list,
-  selectQuran,
-  setSelectQuran,
+  settings,
   toggleAudio,
   restartAudio,
   loadingStates,
@@ -19,35 +18,43 @@ export default function DropdownQuran({
     name_en: string;
     query: string;
   }[];
-  selectQuran: {
+  settings: {
+    isHijri: boolean;
     selectedSurah: string;
     selectedReciter: string;
+    bg: string;
   };
-  setSelectQuran: (
-    value: SetStateAction<{
-      selectedSurah: string;
-      selectedReciter: string;
-    }>
-  ) => void;
   loadingStates: { [key: string]: boolean };
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedOption, setSelectedOption] = useState<number | null>(1);
+  const [selecedOption, setSelecedOption] = useState(settings);
 
-  function findIndexOfStringInObjectList(list: any, stringToFind: string) {
+  function findIndexOfStringInObjectList(
+    list: {
+      name_ar: string;
+      name_en: string;
+      query: string;
+    }[],
+    stringToFind: string
+  ): number {
     for (let i = 0; i < list.length; i++) {
-      for (const key in list[i]) {
-        if (list[i][key] === stringToFind) {
-          return i;
-        }
+      const item = list[i];
+      if (
+        item.name_ar === stringToFind ||
+        item.name_en === stringToFind ||
+        item.query === stringToFind
+      ) {
+        return i;
       }
     }
     return -1;
   }
 
-  let i = findIndexOfStringInObjectList(list, selectQuran.selectedSurah);
-  const [title, setTitle] = useState<string>(list[i].name_ar);
+  const surahIndex = findIndexOfStringInObjectList(
+    list,
+    selecedOption.selectedSurah
+  );
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
@@ -58,21 +65,19 @@ export default function DropdownQuran({
     option.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const currentAudioSrc = `${selectQuran.selectedReciter}/${selectQuran.selectedSurah}.mp3`;
+  const currentAudioSrc = `${selecedOption.selectedReciter}/${selecedOption.selectedSurah}.mp3`;
   const isCurrentlyLoading = loadingStates[currentAudioSrc];
 
   const handleOptionSelect = (index: number) => {
     const newSurah = list[index].query;
-    const newAudioSrc = `${selectQuran.selectedReciter}/${newSurah}.mp3`;
+    const newAudioSrc = `${selecedOption.selectedReciter}/${newSurah}.mp3`;
 
-    setTitle(list[index].name_ar);
-    setSelectQuran((prevState) => ({
+    setSelecedOption((prevState) => ({
       ...prevState,
       selectedSurah: newSurah,
     }));
 
     toggleAudio(newAudioSrc);
-    setSelectedOption(index);
     setIsOpen(false);
   };
 
@@ -121,7 +126,7 @@ export default function DropdownQuran({
               <Loader2 className="animate-spin h-4 w-4" />
             </>
           ) : (
-            title || "Select A Surah"
+            list[surahIndex].name_ar || "Select A Surah"
           )}
         </span>
         <ChevronDown className={isCurrentlyLoading ? "opacity-50" : ""} />
@@ -144,9 +149,9 @@ export default function DropdownQuran({
             {filteredOptions.length > 0 ? (
               filteredOptions.map((option, index) => {
                 const newSurah = list[index].query;
-                const audioSrc = `${selectQuran.selectedReciter}/${newSurah}.mp3`;
+                const audioSrc = `${selecedOption.selectedReciter}/${newSurah}.mp3`;
                 const isOptionLoading = loadingStates[audioSrc];
-                const isSelected = selectedOption === index;
+                const isSelected = surahIndex === index;
 
                 return (
                   <li
