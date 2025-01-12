@@ -5,8 +5,7 @@ import bg1 from "@/assets/bg.jpg";
 import bg3 from "@/assets/bg3.gif";
 import { Dispatch, SetStateAction } from "react";
 import { X } from "lucide-react";
-import { quran, quranList, reciterList } from "@/lib/data";
-import { ruqaa } from "@/app/font";
+import { quranList, reciterList } from "@/lib/data";
 import Dropdown from "./Dropdown";
 
 export default function Settings({
@@ -48,10 +47,10 @@ export default function Settings({
     }
   };
 
-  const handleSurahChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = parseInt(event.target.value, 10);
-    // setSettings((prev) => ({ ...prev, selectedSurah: value }));
-  };
+  // const handleSurahChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const value = parseInt(event.target.value, 10);
+  //   // setSettings((prev) => ({ ...prev, selectedSurah: value }));
+  // };
 
   if (!open) return null;
 

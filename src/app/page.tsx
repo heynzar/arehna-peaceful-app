@@ -27,22 +27,19 @@ export default function Page() {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
-  const [settings, setSettings] = useState({
-    isHijri: false,
-    selectedSurah: "002",
-    selectedReciter: "https://server6.mp3quran.net/qtm",
-    bg: bg.src,
+  const [settings, setSettings] = useState(() => {
+    const savedSettings = localStorage.getItem("settings");
+    return savedSettings
+      ? JSON.parse(savedSettings)
+      : {
+          isHijri: false,
+          selectedSurah: "002",
+          selectedReciter: "https://server6.mp3quran.net/qtm",
+          bg: bg.src,
+        };
   });
 
-  // Load settings from localStorage on mount
-  useEffect(() => {
-    const savedSettings = localStorage.getItem("settings");
-    if (savedSettings) {
-      setSettings(JSON.parse(savedSettings));
-    }
-  }, []);
-
-  // Save settings to localStorage when they change
+  // Save settings to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));
   }, [settings]);
