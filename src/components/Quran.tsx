@@ -41,6 +41,10 @@ export default function Quran({
 
   const [selecedOption, setSelecedOption] = useState(settings);
 
+  useEffect(() => {
+    setSelecedOption(settings);
+  }, [settings]);
+
   const initAudio = (src: string) => {
     if (!audioRefs.current[src]) {
       setLoadingStates((prev) => ({ ...prev, [src]: true }));
@@ -172,7 +176,7 @@ export default function Quran({
       className={`${
         open ? "flex" : "hidden"
       } justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6`}
-      aria-hidden={!open}
+      hidden={!open}
     >
       <div
         className="p-4 w-full md:scale-150 min-w-[270px] max-w-[496px] rounded-2xl bg-zinc-950 border border-zinc-800"

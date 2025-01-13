@@ -14,7 +14,7 @@ export default function InfoSection({ open, setOpen }: InfoSectionProps) {
 
   return (
     <section
-      aria-hidden={!open}
+      hidden={!open}
       aria-labelledby="about-title"
       role="dialog"
       className="flex justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6"

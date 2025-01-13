@@ -34,21 +34,17 @@ export default function Page() {
     bg: bg.src,
   });
 
-  // Load settings after hydration
+  // Load settings from localStorage on mount
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedSettings = localStorage.getItem("settings");
-      if (savedSettings) {
-        setSettings(JSON.parse(savedSettings));
-      }
+    const savedSettings = localStorage.getItem("settings");
+    if (savedSettings) {
+      setSettings(JSON.parse(savedSettings));
     }
   }, []);
 
   // Save settings to localStorage when they change
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("settings", JSON.stringify(settings));
-    }
+    localStorage.setItem("settings", JSON.stringify(settings));
   }, [settings]);
 
   const toggleApp = () => {

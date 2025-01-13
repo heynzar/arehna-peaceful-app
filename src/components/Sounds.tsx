@@ -114,7 +114,7 @@ export default function Sounds({
     <section
       role="dialog"
       aria-labelledby="sound-dialog-title"
-      aria-hidden={!open}
+      hidden={!open}
       className={`absolute inset-0 justify-center items-center  w-screen h-screen bg-black/20 backdrop-blur-sm px-6 ${
         open ? "flex" : "hidden"
       }`}

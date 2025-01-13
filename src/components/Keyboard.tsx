@@ -28,7 +28,7 @@ export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {
 
   return (
     <section
-      aria-hidden={!open}
+      hidden={!open}
       aria-labelledby="keyboard-shortcuts-title"
       role="dialog"
       className="flex justify-center items-center absolute inset-0 w-screen h-screen bg-black/20 backdrop-blur-sm px-6"

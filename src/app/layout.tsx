@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     "rain sounds",
     "peaceful",
   ],
+  metadataBase: new URL("https://arehna.org"),
   openGraph: {
     title: "Arehna - Your Calm Companion",
     description:

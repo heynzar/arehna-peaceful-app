@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronDown } from "lucide-react";
 import { useState, useEffect, useRef, SetStateAction, Dispatch } from "react";
 import { ruqaa } from "@/app/font";
@@ -149,24 +151,27 @@ export default function Dropdown({
                 <li
                   key={index}
                   className="px-2 py-1 hover:bg-zinc-800 cursor-pointer"
-                  onClick={() => {
-                    setIsOpen(false);
-                    if (type === "quran") {
-                      setTitle(list[index].name_ar);
-                      setSettings((prev) => ({
-                        ...prev,
-                        selectedSurah: list[index].query,
-                      }));
-                    } else {
-                      setTitle(list[index].name_ar);
-                      setSettings((prev) => ({
-                        ...prev,
-                        selectedReciter: list[index].query,
-                      }));
-                    }
-                  }}
                 >
-                  {option}
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      if (type === "quran") {
+                        setTitle(list[index].name_ar);
+                        setSettings((prev) => ({
+                          ...prev,
+                          selectedSurah: list[index].query,
+                        }));
+                      } else {
+                        setTitle(list[index].name_ar);
+                        setSettings((prev) => ({
+                          ...prev,
+                          selectedReciter: list[index].query,
+                        }));
+                      }
+                    }}
+                  >
+                    {option}
+                  </button>
                 </li>
               ))
             ) : (
