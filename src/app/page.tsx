@@ -27,27 +27,28 @@ export default function Page() {
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
-  const [settings, setSettings] = useState(() => {
-    // Check if window is defined (client-side)
+  const [settings, setSettings] = useState({
+    isHijri: false,
+    selectedSurah: "002",
+    selectedReciter: "https://server6.mp3quran.net/qtm",
+    bg: bg.src,
+  });
+
+  // Load settings after hydration
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const savedSettings = localStorage.getItem("settings");
       if (savedSettings) {
-        return JSON.parse(savedSettings);
+        setSettings(JSON.parse(savedSettings));
       }
     }
-
-    // Return default settings
-    return {
-      isHijri: false,
-      selectedSurah: "002",
-      selectedReciter: "https://server6.mp3quran.net/qtm",
-      bg: bg.src,
-    };
-  });
+  }, []);
 
   // Save settings to localStorage when they change
   useEffect(() => {
-    localStorage.setItem("settings", JSON.stringify(settings));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("settings", JSON.stringify(settings));
+    }
   }, [settings]);
 
   const toggleApp = () => {
