@@ -28,18 +28,24 @@ export default function Page() {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
 
   const [settings, setSettings] = useState(() => {
-    const savedSettings = localStorage.getItem("settings");
-    return savedSettings
-      ? JSON.parse(savedSettings)
-      : {
-          isHijri: false,
-          selectedSurah: "002",
-          selectedReciter: "https://server6.mp3quran.net/qtm",
-          bg: bg.src,
-        };
+    // Check if window is defined (client-side)
+    if (typeof window !== "undefined") {
+      const savedSettings = localStorage.getItem("settings");
+      if (savedSettings) {
+        return JSON.parse(savedSettings);
+      }
+    }
+
+    // Return default settings
+    return {
+      isHijri: false,
+      selectedSurah: "002",
+      selectedReciter: "https://server6.mp3quran.net/qtm",
+      bg: bg.src,
+    };
   });
 
-  // Save settings to localStorage whenever they change
+  // Save settings to localStorage when they change
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));
   }, [settings]);
