@@ -5,6 +5,8 @@ import bg from "@/assets/bg.jpg";
 import {
   Info,
   Keyboard as KeyboardIcon,
+  Maximize2,
+  Minimize2,
   Pause,
   Play,
   Settings as SettingsIcon,
@@ -26,6 +28,7 @@ export default function Page() {
   const [isQuranOpen, setIsQuranOpen] = useState(false);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const [settings, setSettings] = useState({
     isHijri: false,
@@ -34,18 +37,40 @@ export default function Page() {
     bg: bg.src,
   });
 
-  // Load settings from localStorage on mount
   useEffect(() => {
-    const savedSettings = localStorage.getItem("settings");
-    if (savedSettings) {
-      setSettings(JSON.parse(savedSettings));
+    if (typeof window !== "undefined") {
+      const savedSettings = localStorage.getItem("settings");
+      if (savedSettings) {
+        setSettings(JSON.parse(savedSettings));
+      }
     }
+
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () =>
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
-  // Save settings to localStorage when they change
   useEffect(() => {
-    localStorage.setItem("settings", JSON.stringify(settings));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("settings", JSON.stringify(settings));
+    }
   }, [settings]);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (error) {
+      console.error("Error toggling fullscreen:", error);
+    }
+  };
 
   const toggleApp = () => {
     setIsAppOpen(true);
@@ -144,7 +169,7 @@ export default function Page() {
       <main
         className={`${
           isAppOpen ? "flex" : "hidden"
-        } w-full h-[100dvh] select-none flex-col gap-4 justify-center items-center py-4 px-8`}
+        } w-full h-full select-none flex-col gap-4 justify-center items-center py-4 px-8`}
       >
         <div className="mb-auto" />
         <section className="md:scale-125 py-4 w-full max-w-[400px] rounded-3xl backdrop-blur-sm bg-clip-padding flex flex-col justify-center items-center text-center border-[4px] border-white/20">
@@ -185,14 +210,26 @@ export default function Page() {
           </div>
         </section>
         <div className="w-full flex justify-between items-center mt-auto">
-          <button
-            onClick={() => setIsInfoOpen(true)}
-            className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
-            aria-label="Open About Section"
-          >
-            <Info size={20} strokeWidth={1.5} />
-          </button>
-
+          <div className="flex gap-2">
+            <button
+              onClick={() => setIsInfoOpen(true)}
+              className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+              aria-label="Open About Section"
+            >
+              <Info size={20} strokeWidth={1.5} />
+            </button>
+            <button
+              onClick={toggleFullscreen}
+              className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+              aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+            >
+              {isFullscreen ? (
+                <Minimize2 size={20} strokeWidth={1.5} />
+              ) : (
+                <Maximize2 size={20} strokeWidth={1.5} />
+              )}
+            </button>
+          </div>
           <button
             onClick={() => setIsPlaying((prev) => !prev)}
             className="hidden lg:block lg:ml-28 backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"

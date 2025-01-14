@@ -71,7 +71,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${poppins.className} antialiased h-screen w-screen overflow-x-hidden relative`}
+        className={`${poppins.className} antialiased h-[100svh] w-screen overflow-x-hidden relative`}
       >
         <div
           style={{
