@@ -15,12 +15,13 @@ interface KeyboardProps {
 }
 
 const shortcuts: KeyboardShortcut[] = [
-  { action: "Play • Pause", key: "Space", width: "!px-6" },
-  { action: "Open/Close Quran Panel", key: "Q" },
-  { action: "Open/Close Sound Library", key: "S" },
-  { action: "Open/Close Preferences", key: "P" },
-  { action: "Open/Close Keyboard Shortcuts", key: "K" },
+  { action: "Play • Pause", key: "space", width: "!px-6" },
+  { action: "Open/Close Quran Panel", key: "q" },
+  { action: "Open/Close Sound Library", key: "s" },
+  { action: "Open/Close Preferences", key: "p" },
+  { action: "Open/Close Keyboard Shortcuts", key: "k" },
   { action: "Open/Close App Info", key: "i" },
+  { action: "Toggle FullScreen Mode", key: "f" },
 ];
 
 export default function KeyboardShortcuts({ open, setOpen }: KeyboardProps) {

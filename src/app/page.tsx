@@ -88,6 +88,9 @@ export default function Page() {
         case "enter":
           if (!isAppOpen) toggleApp();
           break;
+        case "f":
+          toggleFullscreen();
+          break;
         case "q":
           setIsQuranOpen((prev) => !prev);
           setIsKeyboardOpen(false);
@@ -211,49 +214,75 @@ export default function Page() {
         </section>
         <div className="w-full flex justify-between items-center mt-auto">
           <div className="flex gap-2">
+            <div className="relative group">
+              <button
+                onClick={() => setIsInfoOpen(true)}
+                className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+                aria-label="Open About Section"
+              >
+                <Info size={20} strokeWidth={1.5} />
+              </button>
+              <span className="bottom-10 -left-2 lg:group-hover:block hidden  whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
+                About Arehna | 'i'
+                <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 left-4"></span>
+              </span>
+            </div>
+            <div className="relative group">
+              <button
+                onClick={toggleFullscreen}
+                className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+                aria-label={
+                  isFullscreen ? "Exit fullscreen" : "Enter fullscreen"
+                }
+              >
+                {isFullscreen ? (
+                  <Minimize2 size={20} strokeWidth={1.5} />
+                ) : (
+                  <Maximize2 size={20} strokeWidth={1.5} />
+                )}
+              </button>
+              <span className="bottom-10 -left-12 lg:group-hover:block hidden  whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
+                FullScreen Mode | 'f'
+                <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 left-[60px]"></span>
+              </span>
+            </div>
+          </div>
+
+          <div className="relative group hidden lg:block">
             <button
-              onClick={() => setIsInfoOpen(true)}
-              className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
-              aria-label="Open About Section"
+              onClick={() => setIsPlaying((prev) => !prev)}
+              className=" lg:ml-28 backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+              aria-label="Play/Pause button"
             >
-              <Info size={20} strokeWidth={1.5} />
-            </button>
-            <button
-              onClick={toggleFullscreen}
-              className="backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
-              aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-            >
-              {isFullscreen ? (
-                <Minimize2 size={20} strokeWidth={1.5} />
+              {isPlaying ? (
+                <Pause size={20} strokeWidth={1.5} />
               ) : (
-                <Maximize2 size={20} strokeWidth={1.5} />
+                <Play size={20} strokeWidth={1.5} />
               )}
             </button>
+            <span className="bottom-10 left-7 lg:group-hover:block hidden  whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
+              Play/Pause | 'space'
+              <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 left-1/2"></span>
+            </span>
           </div>
-          <button
-            onClick={() => setIsPlaying((prev) => !prev)}
-            className="hidden lg:block lg:ml-28 backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
-            aria-label="Open Keyboard"
-          >
-            {isPlaying ? (
-              <Pause size={20} strokeWidth={1.5} />
-            ) : (
-              <Play size={20} strokeWidth={1.5} />
-            )}
-          </button>
 
           <div className="flex items-center gap-2">
             <Timer play={isPlaying} />
 
-            <button
-              onClick={() => setIsKeyboardOpen(true)}
-              className="hidden lg:block backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
-              aria-label="Open Keyboard"
-            >
-              <KeyboardIcon size={20} strokeWidth={1.5} />
-            </button>
+            <div className="relative group">
+              <button
+                onClick={() => setIsKeyboardOpen(true)}
+                className="hidden lg:block backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
+                aria-label="Open Keyboard"
+              >
+                <KeyboardIcon size={20} strokeWidth={1.5} />
+              </button>
+              <span className="bottom-10 lg:group-hover:block hidden -right-4 whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
+                Keyboard Shortcuts | 'k'
+                <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 right-7"></span>
+              </span>
+            </div>
           </div>
-
           <button
             onClick={() => setIsPlaying((prev) => !prev)}
             className="lg:hidden backdrop-blur-sm rounded-lg p-1 border border-white/20 hover:opacity-70 transition-opacity duration-300"
