@@ -171,10 +171,10 @@ export default function DropdownQuran({
                       className={`${
                         isSelected ? "bg-sky-500" : "hover:bg-zinc-800"
                       } px-2 py-2 w-full cursor-pointer text-sm flex items-center justify-between transition-colors duration-200`}
-                      onClick={() => {
+                      onClick={() =>
                         !isOptionLoading &&
-                          handleOptionSelect(parseInt(option) - 1);
-                      }}
+                        handleOptionSelect(parseInt(option) - 1)
+                      }
                     >
                       <span>{option}</span>
                       {isOptionLoading && (

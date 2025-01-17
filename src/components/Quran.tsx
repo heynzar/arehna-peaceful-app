@@ -147,6 +147,7 @@ export default function Quran({
     });
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (openApp && !initialized) {
       playAudio(`${settings.selectedReciter}/${settings.selectedSurah}.mp3`);
@@ -154,6 +155,7 @@ export default function Quran({
     }
   }, [openApp]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (play) {
       if (currentPlaying) {
