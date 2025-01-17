@@ -158,7 +158,8 @@ export default function DropdownReciter({
                       isSelected ? "bg-sky-500" : "hover:bg-zinc-800"
                     } px-2 py-2 cursor-pointer text-sm flex items-center justify-between transition-colors duration-200`}
                     onClick={() =>
-                      !isOptionLoading && handleReciterSelect(index)
+                      !isOptionLoading &&
+                      handleReciterSelect(parseInt(option) - 1)
                     }
                   >
                     <span>{option}</span>

@@ -79,12 +79,10 @@ export default function DropdownQuran({
   const handleOptionSelect = (index: number) => {
     const newSurah = list[index].query;
     const newAudioSrc = `${selecedOption.selectedReciter}/${newSurah}.mp3`;
-    // console.log("from click", list[index].name_ar);
     setSelecedOption((prevState) => ({
       ...prevState,
       selectedSurah: newSurah,
     }));
-    // setTitle(list[index].name_ar);
 
     toggleAudio(newAudioSrc);
     setIsOpen(false);
@@ -173,9 +171,10 @@ export default function DropdownQuran({
                       className={`${
                         isSelected ? "bg-sky-500" : "hover:bg-zinc-800"
                       } px-2 py-2 w-full cursor-pointer text-sm flex items-center justify-between transition-colors duration-200`}
-                      onClick={() =>
-                        !isOptionLoading && handleOptionSelect(index)
-                      }
+                      onClick={() => {
+                        !isOptionLoading &&
+                          handleOptionSelect(parseInt(option) - 1);
+                      }}
                     >
                       <span>{option}</span>
                       {isOptionLoading && (

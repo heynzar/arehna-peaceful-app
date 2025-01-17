@@ -156,16 +156,16 @@ export default function Dropdown({
                     onClick={() => {
                       setIsOpen(false);
                       if (type === "quran") {
-                        setTitle(list[index].name_ar);
+                        setTitle(list[parseInt(option) - 1].name_ar);
                         setSettings((prev) => ({
                           ...prev,
-                          selectedSurah: list[index].query,
+                          selectedSurah: list[parseInt(option) - 1].query,
                         }));
                       } else {
-                        setTitle(list[index].name_ar);
+                        setTitle(list[parseInt(option) - 1].name_ar);
                         setSettings((prev) => ({
                           ...prev,
-                          selectedReciter: list[index].query,
+                          selectedReciter: list[parseInt(option) - 1].query,
                         }));
                       }
                     }}
