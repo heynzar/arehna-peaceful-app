@@ -20,7 +20,7 @@ export default function Sounds({
   const [audioPositions, setAudioPositions] = useState<{
     [key: string]: number;
   }>({});
-  const [volume, setVolume] = useState<number>(1); // Global volume (1 is max, 0 is muted)
+  const [volume, setVolume] = useState<number>(0.7); // Global volume (1 is max, 0 is muted)
   const [muted, setMuted] = useState<boolean>(false); // Track if audio is muted
   const [initialized, setInitialized] = useState<boolean>(false); // Tracks if the first audio has already been played
 
@@ -163,19 +163,23 @@ export default function Sounds({
           aria-live="polite"
           className="flex flex-wrap gap-2 justify-center items-center mt-4"
         >
-          {sounds.map(({ Icon, src }) => (
+          {sounds.map(({ Icon, src, name }) => (
             <button
               onClick={() => toggleAudio(src)}
               key={src}
               aria-pressed={playingSounds.has(src)}
               aria-label={playingSounds.has(src) ? `Pause sound` : `Play sound`}
-              className={`size-[70px] md:size-[86px] cursor-pointer transition-colors duration-300 flex items-center justify-center rounded-lg focus:outline focus:outline-offset-2 focus:outline-sky-500 ${
+              className={`group relative size-[70px] md:size-[86px] cursor-pointer transition-colors duration-300 flex items-center justify-center rounded-lg focus:outline focus:outline-offset-2 focus:outline-sky-500 ${
                 playingSounds.has(src)
                   ? "bg-sky-500 hover:bg-sky-400"
                   : "bg-zinc-900 hover:bg-zinc-800"
               }`}
             >
               <Icon size={40} strokeWidth={1} />
+
+              <span className="hidden absolute top-1 text-xs bg-black opacity-80 min-w-max px-2 rounded group-hover:block">
+                {name}
+              </span>
             </button>
           ))}
         </div>

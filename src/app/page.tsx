@@ -223,7 +223,7 @@ export default function Page() {
                 <Info size={20} strokeWidth={1.5} />
               </button>
               <span className="bottom-10 -left-2 lg:group-hover:block hidden  whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
-                About Arehna | &apos;i&apos;
+                {"About Arehna (i)"}
                 <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 left-4"></span>
               </span>
             </div>
@@ -242,7 +242,7 @@ export default function Page() {
                 )}
               </button>
               <span className="bottom-10 -left-12 lg:group-hover:block hidden  whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
-                FullScreen Mode | &apos;f&apos;
+                {"FullScreen Mode (f)"}
                 <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 left-[60px]"></span>
               </span>
             </div>
@@ -261,7 +261,7 @@ export default function Page() {
               )}
             </button>
             <span className="bottom-10 left-7 lg:group-hover:block hidden  whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
-              Play/Pause | &apos;space&apos;
+              {"Play/Pause (space)"}
               <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 left-1/2"></span>
             </span>
           </div>
@@ -278,7 +278,7 @@ export default function Page() {
                 <KeyboardIcon size={20} strokeWidth={1.5} />
               </button>
               <span className="bottom-10 lg:group-hover:block hidden -right-4 whitespace-nowrap bg-neutral-950 text-white py-1.5 px-4 rounded-lg absolute">
-                Keyboard Shortcuts | &apos;k&apos;
+                {"Keyboard Shortcuts (k)"}
                 <span className="bg-neutral-950 absolute size-2 rotate-45 -bottom-1 right-7"></span>
               </span>
             </div>

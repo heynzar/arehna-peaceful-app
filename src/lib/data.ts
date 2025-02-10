@@ -54,42 +54,52 @@ export const sounds = [
   {
     Icon: Bird,
     src: "https://upbase.io/_assets/pomoup/1_Birds.mp3",
+    name: "Birds",
   },
   {
     Icon: CloudRain,
     src: "https://upbase.io/_assets/pomoup/2_Rain.mp3",
+    name: "Rain",
   },
   {
     Icon: CloudLightning,
     src: "https://upbase.io/_assets/pomoup/3_Thunder.mp3",
+    name: "Thunder",
   },
   {
     Icon: Droplets,
     src: "/audios/drops.mp3",
+    name: "Drops",
   },
   {
     Icon: Dam,
     src: "/audios/waterfall2.mp3",
+    name: "Waterfall",
   },
   {
     Icon: Waves,
     src: "https://upbase.io/_assets/pomoup/8_Ocean_Waves.mp3",
+    name: "Waves",
   },
   {
     Icon: Coffee,
     src: "https://upbase.io/_assets/pomoup/4_Coffee_Shop.mp3",
+    name: "Cafe",
   },
   {
     Icon: Wind,
     src: "/audios/wind2.mp3",
+    name: "Wind",
   },
   {
     Icon: Flame,
     src: "https://upbase.io/_assets/pomoup/6_Fire.mp3",
+    name: "Fire",
   },
   {
     Icon: MoonStar,
     src: "/audios/night2.mp3",
+    name: "Night",
   },
 ];
 
@@ -119,6 +129,11 @@ export const reciterList = [
   //   name_en: "Hazza Al-Balushi",
   //   query: "https://server11.mp3quran.net/hazza",
   // },
+  {
+    name_ar: "اسلام صبحي",
+    name_en: "Islam Sobhi",
+    query: "https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem",
+  },
   {
     name_ar: "فارس عباد",
     name_en: "Fares Abbad",
